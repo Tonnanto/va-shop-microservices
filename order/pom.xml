@@ -13,4 +13,10 @@
     <artifactId>order</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>de.leuphana.va.onlineshop</groupId>
+            <artifactId>article</artifactId>
+        </dependency>
+    </dependencies>
 </project>
