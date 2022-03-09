@@ -1,9 +1,15 @@
 package de.leuphana.va.onlineshop.article.component.structure;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class Article implements Serializable {
 
+	@Id
+	@GeneratedValue
 	private int articleId;
 	private String manufacturer;
 	private String name;
@@ -45,5 +51,4 @@ public class Article implements Serializable {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-
 }
