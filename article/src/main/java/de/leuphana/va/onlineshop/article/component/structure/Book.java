@@ -1,10 +1,18 @@
 package de.leuphana.va.onlineshop.article.component.structure;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+@Entity
 public class Book extends Article {
 
 	private String author;
+
+	@Enumerated(EnumType.STRING)
 	private BookCategory bookCategory;
 
+	public Book() { super(); }
 	public Book(int articleId) {
 		super(articleId);
 	}

@@ -1,38 +1,20 @@
 package de.leuphana.va.onlineshop.article.component.structure;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
 public class Catalog {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int catalogId;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Article> articles;
 
-	public Catalog() {
-		articles = new HashSet<>();
-		this.catalogId = 1;
-		
-		Book book = new Book(1);
-		book.setName("Entwickeln von Web-Anwendungen");
-		book.setPrice(23.0f);
-		book.setBookCategory(BookCategory.POPULAR_SCIENCE);
-		
-		articles.add(book);
-		
-		book = new Book(2);
-		book.setName("Java in a nutshell");
-		book.setPrice(10.5f);
-		book.setBookCategory(BookCategory.POPULAR_SCIENCE);
-		
-		articles.add(book);
-		
-		book = new Book(3);
-		book.setName("Servlets");
-		book.setPrice(16.5f);
-		book.setBookCategory(BookCategory.POPULAR_SCIENCE);
-		
-		articles.add(book);
-	}
+	public Catalog() {}
 
 	public int getCatalogId() {
 		return catalogId;
@@ -44,6 +26,10 @@ public class Catalog {
 
 	public void setArticles(Set<Article> articles) {
 		this.articles = articles;
+	}
+
+	public void addArticle(Article article) {
+		this.articles.add(article);
 	}
 
 	public Article getArticle(int articleId) {
@@ -58,5 +44,6 @@ public class Catalog {
 
 		return foundArticle;
 	}
+
 
 }

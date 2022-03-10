@@ -2,6 +2,7 @@ package de.leuphana.va.onlineshop.article.component.structure;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
@@ -9,7 +10,7 @@ import java.io.Serializable;
 public class Article implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int articleId;
 	private String manufacturer;
 	private String name;
