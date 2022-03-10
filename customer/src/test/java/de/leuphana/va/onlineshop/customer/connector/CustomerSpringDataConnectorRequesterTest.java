@@ -45,9 +45,14 @@ public class CustomerSpringDataConnectorRequesterTest {
 
     @Order(3)
     @Test
-    void canArticleBeAddedToCart() {
+    void canArticlesBeAddedToCart() {
         customerDataConnectorRequester.addArticleToCart(1, cart.getCartId());
+        customerDataConnectorRequester.addArticleToCart(2, cart.getCartId());
+        customerDataConnectorRequester.addArticleToCart(3, cart.getCartId());
         Assertions.assertNotNull(customerDataConnectorRequester.findCartItemByCartAndArticle(1, cart.getCartId()));
+        Assertions.assertNotNull(customerDataConnectorRequester.findCartItemByCartAndArticle(2, cart.getCartId()));
+        Assertions.assertNotNull(customerDataConnectorRequester.findCartItemByCartAndArticle(3, cart.getCartId()));
+        Assertions.assertEquals(3, customerDataConnectorRequester.getCartForCustomer(customer.getCustomerId()).getNumberOfArticles());
     }
 
     @Order(4)
@@ -63,7 +68,13 @@ public class CustomerSpringDataConnectorRequesterTest {
     @Test
     void canArticleBeRemovedFromCart() {
         customerDataConnectorRequester.removeArticleFromCart(1, cart.getCartId());
+        customerDataConnectorRequester.removeArticleFromCart(2, cart.getCartId());
         Assertions.assertNull(customerDataConnectorRequester.findCartItemByCartAndArticle(1, cart.getCartId()));
+        Assertions.assertNull(customerDataConnectorRequester.findCartItemByCartAndArticle(2, cart.getCartId()));
+        Assertions.assertEquals(1, customerDataConnectorRequester.getCartForCustomer(customer.getCustomerId()).getNumberOfArticles());
+
+        customerDataConnectorRequester.removeArticleFromCart(3, cart.getCartId());
+        Assertions.assertNull(customerDataConnectorRequester.findCartItemByCartAndArticle(3, cart.getCartId()));
         Assertions.assertEquals(0, customerDataConnectorRequester.getCartForCustomer(customer.getCustomerId()).getNumberOfArticles());
     }
 
