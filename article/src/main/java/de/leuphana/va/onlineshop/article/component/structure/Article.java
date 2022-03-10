@@ -11,7 +11,7 @@ public class Article implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int articleId;
+	private Integer articleId;
 	private String manufacturer;
 	private String name;
 	private float price;

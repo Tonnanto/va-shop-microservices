@@ -1,74 +1,82 @@
 package de.leuphana.va.onlineshop.customer.component.structure;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
-
+import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+@Entity
 public class Cart {
 
-	private Map<Integer, CartItem> cartItems;
-	private int numberOfArticles;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int cartId;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	private Set<CartItem> cartItems;
 
 	public Cart() {
-		cartItems = new HashMap<>();
-		numberOfArticles = 0;
 	}
 
-	public void addCartItem(Article article) {
-		Integer articleId = article.getArticleId();
+	public int getCartId() {
+		return cartId;
+	}
+
+	public void addCartItem(int articleId) {
 		CartItem cartItem;
-		if (cartItems.containsKey(articleId)) {
-			cartItem = cartItems.get(articleId);
+		if (getCartItemsMap().containsKey(articleId)) {
+			cartItem = getCartItemsMap().get(articleId);
 			cartItem.incrementQuantity();
 		} else {
-			cartItem = new CartItem(article);
-			cartItems.put(articleId, cartItem);
+			cartItem = new CartItem(articleId);
+			cartItems.add(cartItem);
 		}
-		numberOfArticles++;
+	}
+
+	public void decrementArticleQuantity(int articleId) {
+		if (getCartItemsMap().containsKey(articleId)) {
+			CartItem cartItem = getCartItemsMap().get(articleId);
+			cartItem.decrementQuantity();
+
+			if (cartItem.getQuantity() <= 0)
+				cartItems.remove(cartItem);
+
+		}
 	}
 
 	public void deleteCartItem(int articleId) {
-		for (CartItem cartItem : cartItems.values()) {
-			if (cartItem.getArticle().getArticleId() == (articleId)) {
-				cartItems.remove(cartItem.getCartItemId());
+		for (CartItem cartItem : cartItems) {
+			if (cartItem.getArticleId() == (articleId)) {
+				cartItems.remove(cartItem);
 				break;
 			}
 		}
 	}
 
-	public void decrementArticleQuantity(Integer articleId) {
-		if (cartItems.containsKey(articleId)) {
-			CartItem cartItem = cartItems.get(articleId);
-			cartItem.decrementQuantity();
-
-			if (cartItem.getQuantity() <= 0)
-				cartItems.remove(articleId);
-
-			numberOfArticles--;
-		}
+	public Collection<CartItem> getCartItems() {
+		return getCartItemsMap().values();
 	}
 
-	public Collection<CartItem> getCartItems() {
-		return cartItems.values();
+	public Map<Integer, CartItem> getCartItemsMap() {
+		return cartItems.stream().collect(Collectors.toMap(CartItem::getArticleId, cartItem -> cartItem));
 	}
 
 	public int getNumberOfArticles() {
-		return numberOfArticles;
+		return cartItems.size();
 	}
 
-	public double getTotalPrice() {
-		double totalPrice = 0.0;
-
-		Article article;
-		for (CartItem cartItem : getCartItems()) {
-			article = cartItem.getArticle();
-
-			totalPrice += cartItem.getQuantity() * article.getPrice();
-		}
-
-		return totalPrice;
-	}
+//	public double getTotalPrice() {
+//		double totalPrice = 0.0;
+//
+//		Article article;
+//		for (CartItem cartItem : getCartItems()) {
+//			article = cartItem.getArticle();
+//
+//			totalPrice += cartItem.getQuantity() * article.getPrice();
+//		}
+//
+//		return totalPrice;
+//	}
 
 }

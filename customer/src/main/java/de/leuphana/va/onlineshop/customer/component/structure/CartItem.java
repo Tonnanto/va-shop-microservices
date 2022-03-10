@@ -1,15 +1,27 @@
 package de.leuphana.va.onlineshop.customer.component.structure;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class CartItem {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int cartItemId;
-	private Article article;
+
+	private int articleId;
+
 	private int quantity;
 
-	public CartItem(Article article) {
-		this.article = article;
+	public CartItem() {
+		quantity = 1;
+	}
+
+	public CartItem(int articleId) {
+		this.articleId = articleId;
 		quantity = 1;
 	}
 
@@ -17,18 +29,26 @@ public class CartItem {
 		return cartItemId;
 	}
 
-	public Article getArticle() {
-		return article;
+	public int getArticleId() {
+		return articleId;
+	}
+
+	public void setArticleId(int articleId) {
+		this.articleId = articleId;
 	}
 
 	public int getQuantity() {
 		return quantity;
 	}
 
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	public void incrementQuantity() {
 		quantity++;
 	}
-	
+
 	public void decrementQuantity() {
 		quantity--;
 	}

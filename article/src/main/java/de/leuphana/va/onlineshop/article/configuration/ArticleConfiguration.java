@@ -18,7 +18,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource({"classpath:persistence.properties"})
+@PropertySource({"classpath:article_persistence.properties"})
 public class ArticleConfiguration {
 
     @Autowired

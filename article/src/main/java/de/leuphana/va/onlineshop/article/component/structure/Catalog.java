@@ -9,7 +9,7 @@ public class Catalog {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int catalogId;
+	private Integer catalogId;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Article> articles;
