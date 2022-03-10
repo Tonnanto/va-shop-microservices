@@ -1,6 +1,5 @@
 package de.leuphana.va.onlineshop.customer.configuration;
 
-import de.leuphana.va.onlineshop.article.connector.ArticleSpringDataConnectorRequester;
 import de.leuphana.va.onlineshop.customer.connector.CustomerSpringDataConnectorRequester;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

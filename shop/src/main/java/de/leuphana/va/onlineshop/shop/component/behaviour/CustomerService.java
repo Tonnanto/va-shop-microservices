@@ -2,7 +2,7 @@ package de.leuphana.va.onlineshop.shop.component.behaviour;
 
 import de.leuphana.va.onlineshop.article.component.structure.Article;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
-import de.leuphana.va.onlineshop.order.component.structure.Order;
+import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 
 import java.util.Set;
 
@@ -20,7 +20,7 @@ public interface CustomerService {
 
     void decrementArticleQuantityInCart(Integer customerId, Integer articleId);
 
-    Order checkOutCart(int customerId);
+    Orderr checkOutCart(int customerId);
 
     Cart getCartForCustomer(Integer customerId);
 

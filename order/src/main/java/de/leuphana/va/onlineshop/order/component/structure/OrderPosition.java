@@ -1,29 +1,32 @@
 package de.leuphana.va.onlineshop.order.component.structure;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class OrderPosition {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int positionId;
-	private Article article;
+
+	private int articleId;
 	private int articleQuantity;
 
 	public OrderPosition() {}
-
-	public OrderPosition(int positionId) {
-		this.positionId = positionId;
-	}
 
 	public Integer getPositionId() {
 		return positionId;
 	}
 
-	public Article getArticle() {
-		return article;
+	public int getArticleId() {
+		return articleId;
 	}
 
-	public void setArticle(Article article) {
-		this.article = article;
+	public void setArticleId(int articleId) {
+		this.articleId = articleId;
 	}
 
 	public int getArticleQuantity() {
