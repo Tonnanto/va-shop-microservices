@@ -2,6 +2,7 @@ package de.leuphana.va.onlineshop.customer.component.structure;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,6 +18,7 @@ public class Cart {
 	private Set<CartItem> cartItems;
 
 	public Cart() {
+		this.cartItems = new HashSet<>();
 	}
 
 	public int getCartId() {

@@ -52,15 +52,15 @@ public class CustomerSpringDataConnectorRequester {
         return getCurrentSession().find(Cart.class, cartId);
     }
 
-    public void addArticleToCart(int articleId, int cartId) {
-        Cart foundCart = findCartById(cartId);
+    public void addArticleToCart(int articleId, int customerId) {
+        Cart foundCart = getCartForCustomer(customerId);
         if (foundCart == null) return;
         foundCart.addCartItem(articleId);
         getCurrentSession().save(foundCart);
     }
 
-    public void removeArticleFromCart(int articleId, int cartId) {
-        Cart foundCart = findCartById(cartId);
+    public void removeArticleFromCart(int articleId, int customerId) {
+        Cart foundCart = getCartForCustomer(customerId);
         if (foundCart == null) return;
         foundCart.deleteCartItem(articleId);
         getCurrentSession().save(foundCart);
@@ -74,16 +74,16 @@ public class CustomerSpringDataConnectorRequester {
         return getCurrentSession().find(CartItem.class, cartItemId);
     }
 
-    public CartItem findCartItemByCartAndArticle(int articleId, int cartId) {
-        Cart foundCart = findCartById(cartId);
+    public CartItem findCartItemByCustomerAndArticle(int articleId, int customerId) {
+        Cart foundCart = getCartForCustomer(customerId);
         if (foundCart == null) return null;
         return foundCart.getCartItemsMap().get(articleId);
     }
 
-    public void updateCartItemQuantity(int articleId, int cartId, int quantity) {
-        CartItem foundCartItem = findCartItemByCartAndArticle(articleId, cartId);
+    public void updateCartItemQuantity(int articleId, int customerId, int quantity) {
+        CartItem foundCartItem = findCartItemByCustomerAndArticle(articleId, customerId);
         if (foundCartItem == null) return;
-        if (quantity <= 0) removeArticleFromCart(articleId, cartId);
+        if (quantity <= 0) removeArticleFromCart(articleId, customerId);
         foundCartItem.setQuantity(quantity);
 
         getCurrentSession().save(foundCartItem);

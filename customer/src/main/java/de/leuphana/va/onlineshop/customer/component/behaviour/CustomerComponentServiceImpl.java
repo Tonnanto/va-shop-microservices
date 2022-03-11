@@ -1,32 +1,48 @@
 package de.leuphana.va.onlineshop.customer.component.behaviour;
 
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
+import de.leuphana.va.onlineshop.customer.component.structure.CartItem;
+import de.leuphana.va.onlineshop.customer.component.structure.Customer;
+import de.leuphana.va.onlineshop.customer.connector.CustomerSpringDataConnectorRequester;
 import de.leuphana.va.onlineshop.order.component.structure.Orderr;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerComponentServiceImpl implements CustomerComponentService {
+
+    private final CustomerSpringDataConnectorRequester dataConnector;
+
+    public CustomerComponentServiceImpl(CustomerSpringDataConnectorRequester dataConnector) {
+        this.dataConnector = dataConnector;
+    }
+
     @Override
-    public Integer createCustomerWithCart() {
-        return null;
+    public Customer createCustomerWithCart() {
+        Customer newCustomer = new Customer();
+        dataConnector.saveCustomer(newCustomer);
+        return newCustomer;
     }
 
     @Override
     public void removeArticleFromCart(Integer customerId, int articleId) {
-
+        dataConnector.removeArticleFromCart(articleId, customerId);
     }
 
     @Override
     public void addArticleToCart(Integer customerId, Integer articleId) {
-
+        dataConnector.addArticleToCart(articleId, customerId);
     }
 
     @Override
     public void decrementArticleQuantityInCart(Integer customerId, Integer articleId) {
-
+        CartItem cartItem = dataConnector.findCartItemByCustomerAndArticle(articleId, customerId);
+        if (cartItem == null) return;
+        dataConnector.updateCartItemQuantity(articleId, customerId, cartItem.getQuantity() - 1);
     }
 
     @Override
     public Cart getCartForCustomer(Integer customerId) {
-        return null;
+        return dataConnector.getCartForCustomer(customerId);
     }
 
     @Override
