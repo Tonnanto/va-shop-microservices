@@ -61,6 +61,9 @@ public class ArticleConfiguration {
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.setProperty("hibernate.default_batch_fetch_size", environment.getProperty("hibernate.default_batch_fetch_size"));
         hibernateProperties.setProperty("hibernate.jdbc.batch_size", environment.getProperty("hibernate.jdbc.batch_size"));
+        hibernateProperties.setProperty("hibernate.show_sql", "true");
+        hibernateProperties.setProperty("hibernate.format_sql", "true");
+        hibernateProperties.setProperty("use_sql_comments", "true");
         return hibernateProperties;
     }
 }

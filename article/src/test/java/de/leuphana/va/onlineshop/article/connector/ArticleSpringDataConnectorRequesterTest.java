@@ -55,14 +55,14 @@ public class ArticleSpringDataConnectorRequesterTest {
 
     @Test
     @Order(1)
-    void canCatalogBeInserted() {
+    void canCatalogBeCreated() {
         articleDataConnectorRequester.saveCatalog(catalog);
     }
 
     @Test
     @Order(2)
-    void areAllCatalogsAvailable() {
-        Assertions.assertEquals(1, articleDataConnectorRequester.findAllCatalogs().size());
+    void canCatalogBeFound() {
+        Assertions.assertNotNull(articleDataConnectorRequester.findCatalogById(catalog.getCatalogId()));
     }
 
     @Test
@@ -97,11 +97,17 @@ public class ArticleSpringDataConnectorRequesterTest {
 
     @Test
     @Order(6)
+    void canArticleBeDeleted() {
+        int articleToDelete = articleSet.stream().findFirst().get().getArticleId();
+        Assertions.assertNotNull(articleDataConnectorRequester.findArticleById(articleToDelete));
+        articleDataConnectorRequester.deleteArticle(articleToDelete);
+        Assertions.assertNull(articleDataConnectorRequester.findArticleById(articleToDelete));
+    }
+
+    @Test
+    @Order(7)
     void canCatalogBeDeleted() {
         articleDataConnectorRequester.deleteCatalog(catalog.getCatalogId());
         Assertions.assertNull(articleDataConnectorRequester.findCatalogById(catalog.getCatalogId()));
-
-        Assertions.assertTrue(articleDataConnectorRequester.findAllCatalogs().isEmpty());
-        Assertions.assertTrue(articleDataConnectorRequester.findAllArticles().isEmpty());
     }
 }

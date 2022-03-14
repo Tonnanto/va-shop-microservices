@@ -29,7 +29,7 @@ public class ArticleSpringDataConnectorRequester {
     // Operations for Article
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public void insertArticleIntoCatalog(Article article, int catalogId) {
+    public void insertArticleIntoCatalog(Article article, String catalogId) {
         Catalog foundCatalog = findCatalogById(catalogId);
         if (foundCatalog == null) return;
         foundCatalog.addArticle(article);
@@ -57,6 +57,16 @@ public class ArticleSpringDataConnectorRequester {
         return getCurrentSession().find(Article.class, id);
     }
 
+    public boolean updateArticle(Article article) {
+        try {
+            getCurrentSession().update(article);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
     public void deleteArticle(int id) {
         Article article = findArticleById(id);
         getCurrentSession().delete(article);
@@ -67,7 +77,7 @@ public class ArticleSpringDataConnectorRequester {
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     public void saveCatalog(Catalog catalog) {
-        getCurrentSession().save(catalog);
+        getCurrentSession().saveOrUpdate(catalog);
     }
 
     public Set<Catalog> findAllCatalogs() {
@@ -87,11 +97,11 @@ public class ArticleSpringDataConnectorRequester {
         return catalogs;
     }
 
-    public Catalog findCatalogById(int id) {
+    public Catalog findCatalogById(String id) {
         return getCurrentSession().find(Catalog.class, id);
     }
 
-    public void deleteCatalog(int id) {
+    public void deleteCatalog(String id) {
         Catalog catalog = findCatalogById(id);
         getCurrentSession().delete(catalog);
     }
