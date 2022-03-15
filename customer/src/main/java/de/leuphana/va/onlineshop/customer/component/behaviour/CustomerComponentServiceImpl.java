@@ -4,7 +4,6 @@ import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.component.structure.CartItem;
 import de.leuphana.va.onlineshop.customer.component.structure.Customer;
 import de.leuphana.va.onlineshop.customer.connector.CustomerSpringDataConnectorRequester;
-import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -45,8 +44,8 @@ public class CustomerComponentServiceImpl implements CustomerComponentService {
         return dataConnector.getCartForCustomer(customerId);
     }
 
-    @Override
-    public Orderr checkOutCart(int customerId) {
-        return null;
-    }
+//    @Override
+//    public Orderr checkOutCart(int customerId) {
+//        return null;
+//    }
 }

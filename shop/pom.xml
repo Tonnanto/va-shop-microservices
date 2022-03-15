@@ -14,35 +14,35 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <dependency>
-            <groupId>de.leuphana.va.onlineshop</groupId>
-            <artifactId>article</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>de.leuphana.va.onlineshop</groupId>-->
+<!--            <artifactId>article</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>de.leuphana.va.onlineshop</groupId>
-            <artifactId>customer</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>de.leuphana.va.onlineshop</groupId>-->
+<!--            <artifactId>customer</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>de.leuphana.va.onlineshop</groupId>
-            <artifactId>order</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>de.leuphana.va.onlineshop</groupId>-->
+<!--            <artifactId>order</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.data</groupId>-->
+<!--            <artifactId>spring-data-jpa</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-orm</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate</groupId>-->
+<!--            <artifactId>hibernate-core</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -54,20 +54,20 @@
             <artifactId>spring-test</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-jdbc</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.mariadb.jdbc</groupId>-->
+<!--            <artifactId>mariadb-java-client</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -79,4 +79,26 @@
             <artifactId>log4j-api</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.4</version>
+                <configuration>
+                    <mainClass>de.leuphana.va.onlineshop.shop.component.ShopApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>shop</finalName>
+    </build>
 </project>

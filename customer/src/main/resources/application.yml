@@ -1,19 +1,6 @@
 server:
-  port: 8081
+  port: 80
 
 spring:
   application:
     name: customer
-#  datasource:
-#    driver-class-name: org.mariadb.jdbc.Driver
-#    url: 'jdbc:mysql://localhost:3306/customer'
-#    username: 'Shop'
-#    password: 'Shop'
-#  jpa:
-#    properties:
-#      hibernate:
-#        dialect: 'org.hibernate.dialect.MariaDBDialect'
-#        format_sql: 'true'
-#    hibernate:
-#      ddl-auto: update
-#    show_sql: true

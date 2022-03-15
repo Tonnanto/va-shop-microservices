@@ -1,0 +1,102 @@
+version: "3.9"
+services:
+
+  # +++++++++++++++++ ARTICLE COMPONENT +++++++++++++++++
+  article_app:
+    build: article
+    restart: always
+    ports:
+      - "8082:80"
+    depends_on:
+      - article_db
+    command: sh -c './wait-for article_db:3306 -- npm start'
+
+  article_db:
+    image: "mariadb:latest"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: article
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+      MYSQL_ROOT_PASSWORD: admin123
+
+  article_db_admin:
+    image: "phpmyadmin/phpmyadmin:latest"
+    restart: always
+    depends_on:
+      - article_db
+    environment:
+      PMA_HOST: article_db
+      PMA_PORT: 3306
+      PMA_USER: admin
+      PMA_PASSWORD: admin123
+    ports:
+      - "3333:80"
+
+  # +++++++++++++++++ CUSTOMER COMPONENT +++++++++++++++++
+  customer_app:
+    build: customer
+    restart: always
+    ports:
+      - "8081:80"
+    depends_on:
+      - customer_db
+    command: sh -c './wait-for customer_db:3306 -- npm start'
+
+  customer_db:
+    image: "mariadb:latest"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: customer
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+      MYSQL_ROOT_PASSWORD: admin123
+
+  customer_db_admin:
+    image: "phpmyadmin/phpmyadmin:latest"
+    restart: always
+    depends_on:
+      - customer_db
+    environment:
+      PMA_HOST: customer_db
+      PMA_PORT: 3306
+      PMA_USER: admin
+      PMA_PASSWORD: admin123
+    ports:
+      - "3334:80"
+
+
+  # +++++++++++++++++ ORDER COMPONENT +++++++++++++++++
+  order_app:
+    build: order
+    restart: always
+    ports:
+      - "8083:80"
+    depends_on:
+      - order_db
+    command: sh -c './wait-for order_db:3306 -- npm start'
+
+  order_db:
+    image: "mariadb:latest"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: order
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+      MYSQL_ROOT_PASSWORD: admin123
+
+  order_db_admin:
+    image: "phpmyadmin/phpmyadmin:latest"
+    restart: always
+    depends_on:
+      - order_db
+    environment:
+      PMA_HOST: order_db
+      PMA_PORT: 3306
+      PMA_USER: admin
+      PMA_PASSWORD: admin123
+    ports:
+      - "3335:80"

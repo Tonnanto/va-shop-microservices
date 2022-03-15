@@ -166,7 +166,7 @@
                 <plugin>
                     <artifactId>org.springframework.boot</artifactId>
                     <groupId>spring-boot-maven-plugin</groupId>
-                    <version>${spring.boot.dependencies.version}</version>
+                    <version>2.6.4</version>
                 </plugin>
             </plugins>
         </pluginManagement>

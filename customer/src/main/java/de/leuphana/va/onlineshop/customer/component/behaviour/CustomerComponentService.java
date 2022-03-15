@@ -2,7 +2,6 @@ package de.leuphana.va.onlineshop.customer.component.behaviour;
 
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.component.structure.Customer;
-import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 
 public interface CustomerComponentService {
 
@@ -16,6 +15,6 @@ public interface CustomerComponentService {
 
     Cart getCartForCustomer(Integer customerId);
 
-    Orderr checkOutCart(int customerId);
+//    Orderr checkOutCart(int customerId);
 
 }

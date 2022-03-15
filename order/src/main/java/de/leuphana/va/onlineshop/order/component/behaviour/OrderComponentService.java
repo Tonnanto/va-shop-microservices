@@ -2,7 +2,6 @@ package de.leuphana.va.onlineshop.order.component.behaviour;
 
 import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 
-import java.util.List;
 import java.util.Set;
 
 public interface OrderComponentService {

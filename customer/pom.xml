@@ -69,23 +69,31 @@
             <artifactId>log4j-api</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>de.leuphana.va.onlineshop</groupId>
-            <artifactId>article</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>de.leuphana.va.onlineshop</groupId>
-            <artifactId>order</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>de.leuphana.va.onlineshop</groupId>-->
+<!--            <artifactId>article</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
         <plugins>
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.4</version>
+                <configuration>
+                    <mainClass>de.leuphana.va.onlineshop.customer.component.CustomerApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+        <finalName>customer</finalName>
     </build>
 </project>
