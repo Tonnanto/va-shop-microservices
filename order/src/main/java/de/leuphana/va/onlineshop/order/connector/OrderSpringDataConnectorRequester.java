@@ -53,6 +53,23 @@ public class OrderSpringDataConnectorRequester {
         return orders;
     }
 
+    public Set<Orderr> findAllOrders() {
+        Set<Orderr> orders = new HashSet<>();
+
+        String queryString = "SELECT * FROM Orderr";
+
+        NativeQuery<Orderr> query = getCurrentSession().createNativeQuery(queryString, Orderr.class);
+        List<?> results = query.getResultList();
+
+        for (Object result: results) {
+            if (result instanceof Orderr order) {
+                orders.add(order);
+            }
+        }
+
+        return orders;
+    }
+
     public void deleteOrder(int orderId) {
         Orderr orderToDelete = findOrderById(orderId);
         getCurrentSession().delete(orderToDelete);

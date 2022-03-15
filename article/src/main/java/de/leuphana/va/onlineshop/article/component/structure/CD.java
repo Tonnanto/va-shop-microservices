@@ -8,9 +8,9 @@ public class CD extends Article {
 	private String artist;
 
 	public CD() { super(); }
-	public CD(int articleId) {
-		super(articleId);
-	}
+//	public CD(int articleId) {
+//		super(articleId);
+//	}
 
 	public String getArtist() {
 		return artist;

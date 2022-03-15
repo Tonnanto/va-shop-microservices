@@ -13,9 +13,9 @@ public class Book extends Article {
 	private BookCategory bookCategory;
 
 	public Book() { super(); }
-	public Book(int articleId) {
-		super(articleId);
-	}
+//	public Book(int articleId) {
+//		super(articleId);
+//	}
 
 	public String getAuthor() {
 		return author;

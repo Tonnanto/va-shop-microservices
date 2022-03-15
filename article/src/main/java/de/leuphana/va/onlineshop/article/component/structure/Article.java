@@ -28,9 +28,9 @@ public class Article implements Serializable {
 	private float price;
 
 	public Article() {}
-	public Article(int articleId) {
-		this.articleId = articleId;
-	}
+//	public Article(int articleId) {
+//		this.articleId = articleId;
+//	}
 
 	public int getArticleId() {
 		return articleId;

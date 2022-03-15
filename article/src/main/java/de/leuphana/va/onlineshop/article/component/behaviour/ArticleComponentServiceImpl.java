@@ -13,8 +13,6 @@ public class ArticleComponentServiceImpl implements ArticleComponentService {
     // This service implementation manages one single catalog of articles.
     public static final String mainCatalogId = "main_catalog";
 
-//    private Catalog catalog;
-
     private final ArticleSpringDataConnectorRequester dataConnector;
 
     public ArticleComponentServiceImpl(ArticleSpringDataConnectorRequester dataConnector) {
@@ -54,7 +52,7 @@ public class ArticleComponentServiceImpl implements ArticleComponentService {
     @Override
     public boolean insertArticle(Article article) {
         dataConnector.insertArticleIntoCatalog(article, mainCatalogId);
-        return true; // TODO: saving success?
+        return true; // TODO: creation success?
     }
 
     @Override
