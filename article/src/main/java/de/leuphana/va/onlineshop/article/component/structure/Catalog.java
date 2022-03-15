@@ -13,6 +13,7 @@ public class Catalog {
 	private String catalogId;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
 	private Set<Article> articles;
 
 	public Catalog() {
@@ -42,13 +43,6 @@ public class Catalog {
 
 	public void addArticles(Set<Article> articles) {
 		this.articles.addAll(articles);
-	}
-
-	public void removeArticle(int articleId) {
-		articles.stream().filter(article -> article.getArticleId() == articleId).forEach(article -> {
-//			article.setCatalog(null);
-			articles.remove(article);
-		});
 	}
 
 	public Article getArticle(int articleId) {

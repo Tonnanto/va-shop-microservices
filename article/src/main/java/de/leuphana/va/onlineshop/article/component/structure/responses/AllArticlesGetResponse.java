@@ -1,7 +1,9 @@
 package de.leuphana.va.onlineshop.article.component.structure.responses;
 
-import org.hibernate.mapping.Set;
+import de.leuphana.va.onlineshop.article.component.structure.Article;
+
+import java.util.Set;
 
 public record AllArticlesGetResponse(
-   Set articles
+   Set<Article> articles
 ) {}

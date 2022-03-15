@@ -11,7 +11,7 @@ import java.util.Set;
 public class ArticleComponentServiceImpl implements ArticleComponentService {
 
     // This service implementation manages one single catalog of articles.
-    private final String mainCatalogId = "main_catalog";
+    public static final String mainCatalogId = "main_catalog";
 
 //    private Catalog catalog;
 
@@ -64,9 +64,6 @@ public class ArticleComponentServiceImpl implements ArticleComponentService {
 
     @Override
     public boolean removeArticle(int articleId) {
-//        Catalog catalog = dataConnector.findCatalogById(mainCatalogId);
-//        catalog.removeArticle(articleId);
-//        dataConnector.saveCatalog(catalog);
         dataConnector.deleteArticle(articleId);
         return true; // TODO: removing success?
     }

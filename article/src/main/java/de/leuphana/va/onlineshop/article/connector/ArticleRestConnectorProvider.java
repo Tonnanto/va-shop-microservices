@@ -4,10 +4,13 @@ import de.leuphana.va.onlineshop.article.component.behaviour.ArticleComponentSer
 import de.leuphana.va.onlineshop.article.component.structure.Article;
 import de.leuphana.va.onlineshop.article.component.structure.Catalog;
 import de.leuphana.va.onlineshop.article.component.structure.requests.ArticleWriteRequest;
+import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticlesGetResponse;
 import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleWriteResponse;
 import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
 import de.leuphana.va.onlineshop.article.component.structure.responses.CatalogGetResponse;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("api/v1/article")
@@ -25,11 +28,11 @@ public class ArticleRestConnectorProvider {
         return new ArticleGetResponse(article);
     }
 
-//    @GetMapping(path = "/all")
-//    public AllArticlesGetResponse getAllArticles() {
-//        Set<Article> articles = articleService.getArticles();
-//        return new AllArticlesGetResponse(articles);
-//    }
+    @GetMapping(path = "/all")
+    public AllArticlesGetResponse getAllArticles() {
+        Set<Article> articles = articleService.getArticles();
+        return new AllArticlesGetResponse(articles);
+    }
 
     @GetMapping(path = "/catalog")
     public CatalogGetResponse getCatalog() {
@@ -49,7 +52,7 @@ public class ArticleRestConnectorProvider {
         return new ArticleWriteResponse(success);
     }
 
-    @PostMapping(path = "/delete/{articleId}")
+    @DeleteMapping(path = "/{articleId}")
     public ArticleWriteResponse updateArticle(@PathVariable("articleId") Integer articleId) {
         boolean success = articleService.removeArticle(articleId);
         return new ArticleWriteResponse(success);
