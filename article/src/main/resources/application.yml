@@ -4,3 +4,8 @@ server:
 spring:
   application:
     name: article
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://servicediscovery:8761/eureka}

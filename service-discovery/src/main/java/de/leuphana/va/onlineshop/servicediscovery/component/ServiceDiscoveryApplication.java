@@ -1,20 +1,19 @@
-package de.leuphana.va.onlineshop.shop.component;
+package de.leuphana.va.onlineshop.servicediscovery.component;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication(
         scanBasePackages = {
-                "de.leuphana.va.onlineshop.shop"
+                "de.leuphana.va.onlineshop.servicediscovery"
         },
         exclude = DataSourceAutoConfiguration.class
 )
-@EnableEurekaClient
-public class ShopApplication {
+@EnableEurekaServer
+public class ServiceDiscoveryApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ShopApplication.class, args);
+        SpringApplication.run(ServiceDiscoveryApplication.class, args);
     }
 }

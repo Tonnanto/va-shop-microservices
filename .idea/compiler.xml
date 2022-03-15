@@ -9,13 +9,13 @@
         <module name="api-gateway" />
         <module name="shop" />
         <module name="article" />
+        <module name="service-discovery" />
         <module name="customer" />
         <module name="order" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="discovery-service" target="16" />
-      <module name="service-discovery" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,6 +1,12 @@
 version: "3.9"
 services:
 
+  servicediscovery:
+    build: service-discovery
+    restart: always
+    ports:
+      - "8761:8761"
+
   # +++++++++++++++++ ARTICLE COMPONENT +++++++++++++++++
   article_app:
     build: article
@@ -9,6 +15,7 @@ services:
       - "8082:80"
     depends_on:
       - article_db
+      - servicediscovery
     command: sh -c './wait-for article_db:3306 -- npm start'
 
   article_db:
@@ -42,6 +49,7 @@ services:
       - "8081:80"
     depends_on:
       - customer_db
+      - servicediscovery
     command: sh -c './wait-for customer_db:3306 -- npm start'
 
   customer_db:
@@ -76,6 +84,7 @@ services:
       - "8083:80"
     depends_on:
       - order_db
+      - servicediscovery
     command: sh -c './wait-for order_db:3306 -- npm start'
 
   order_db:
