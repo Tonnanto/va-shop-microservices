@@ -1,6 +1,14 @@
 version: "3.9"
 services:
 
+  api_gateway:
+    build: api-gateway
+    restart: always
+    depends_on:
+      - servicediscovery
+    ports:
+      - "8080:8080"
+
   servicediscovery:
     build: service-discovery
     restart: always
