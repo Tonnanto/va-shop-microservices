@@ -64,6 +64,7 @@
                 <version>2.6.4</version>
                 <configuration>
                     <mainClass>de.leuphana.va.onlineshop.customer.component.CustomerApplication</mainClass>
+                    <classifier>exec</classifier>
                 </configuration>
                 <executions>
                     <execution>
