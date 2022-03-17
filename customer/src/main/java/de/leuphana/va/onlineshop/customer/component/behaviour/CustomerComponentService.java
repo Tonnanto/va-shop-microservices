@@ -5,7 +5,7 @@ import de.leuphana.va.onlineshop.customer.component.structure.Customer;
 
 public interface CustomerComponentService {
 
-    Customer createCustomerWithCart();
+    Customer createCustomerWithCart(String name, String address);
 
     void removeArticleFromCart(Integer customerId, int articleId);
 

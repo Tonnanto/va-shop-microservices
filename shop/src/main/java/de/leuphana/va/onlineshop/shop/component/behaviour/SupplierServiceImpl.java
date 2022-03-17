@@ -1,23 +1,27 @@
 package de.leuphana.va.onlineshop.shop.component.behaviour;
 
+import de.leuphana.va.onlineshop.article.component.structure.Article;
+import org.springframework.stereotype.Service;
+
+@Service
 public class SupplierServiceImpl implements SupplierService {
-//    @Override
-//    public boolean insertArticle(Article article) {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean updateArticle(Article article) {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean removeArticle(int articleId) {
-//        return false;
-//    }
-//
-//    @Override
-//    public Article getArticle(int articleId) {
-//        return null;
-//    }
+    @Override
+    public boolean insertArticle(Article article) {
+        return false;
+    }
+
+    @Override
+    public boolean updateArticle(Article article) {
+        return false;
+    }
+
+    @Override
+    public boolean removeArticle(int articleId) {
+        return false;
+    }
+
+    @Override
+    public Article getArticle(int articleId) {
+        return null;
+    }
 }

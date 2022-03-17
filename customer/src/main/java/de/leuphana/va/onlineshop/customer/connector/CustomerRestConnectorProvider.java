@@ -3,9 +3,8 @@ package de.leuphana.va.onlineshop.customer.connector;
 import de.leuphana.va.onlineshop.customer.component.behaviour.CustomerComponentService;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.component.structure.Customer;
-import de.leuphana.va.onlineshop.customer.component.structure.requests.AddRemoveArticleRequest;
-import de.leuphana.va.onlineshop.customer.component.structure.responses.CartGetResponse;
-import de.leuphana.va.onlineshop.customer.component.structure.responses.CustomerCreateResponse;
+import de.leuphana.va.onlineshop.customer.connector.responses.*;
+import de.leuphana.va.onlineshop.customer.connector.requests.*;
 import org.springframework.web.bind.annotation.*;
 
 //@Slf4j
@@ -20,8 +19,8 @@ public class CustomerRestConnectorProvider {
     }
 
     @PostMapping("create")
-    public CustomerCreateResponse createCustomer() {
-        Customer newCustomer = customerService.createCustomerWithCart();
+    public CustomerCreateResponse createCustomer(@RequestBody CustomerCreateRequest createCustomerRequest) {
+        Customer newCustomer = customerService.createCustomerWithCart(createCustomerRequest.name(), createCustomerRequest.address());
         return new CustomerCreateResponse(newCustomer);
     }
 

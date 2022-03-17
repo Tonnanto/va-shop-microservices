@@ -16,8 +16,10 @@ public class CustomerComponentServiceImpl implements CustomerComponentService {
     }
 
     @Override
-    public Customer createCustomerWithCart() {
+    public Customer createCustomerWithCart(String name, String address) {
         Customer newCustomer = new Customer();
+        newCustomer.setName(name);
+        newCustomer.setAddress(address);
         dataConnector.saveCustomer(newCustomer);
         return newCustomer;
     }
