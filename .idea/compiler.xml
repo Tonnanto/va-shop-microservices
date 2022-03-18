@@ -6,8 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="api-gateway" />
+        <module name="customer-service-invoker" />
         <module name="shop" />
+        <module name="supplier-service-invoker" />
+        <module name="api-gateway" />
         <module name="article" />
         <module name="service-discovery" />
         <module name="customer" />

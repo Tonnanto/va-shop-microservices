@@ -19,9 +19,9 @@ public class CustomerRestConnectorProvider {
     }
 
     @PostMapping("create")
-    public CustomerCreateResponse createCustomer(@RequestBody CustomerCreateRequest createCustomerRequest) {
+    public CustomerReadResponse createCustomer(@RequestBody CustomerCreateRequest createCustomerRequest) {
         Customer newCustomer = customerService.createCustomerWithCart(createCustomerRequest.name(), createCustomerRequest.address());
-        return new CustomerCreateResponse(newCustomer);
+        return new CustomerReadResponse(newCustomer);
     }
 
     @PostMapping("cart/addArticle")

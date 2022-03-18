@@ -10,17 +10,19 @@ public interface CustomerService {
 
     Integer createCustomerWithCart(String name, String address);
 
-    Article getArticle(int articleId);
+    Article getArticle(Integer articleId);
 
     Set<Article> getArticles();
 
-    void removeArticleFromCart(Integer customerId, int articleId);
+    void removeArticleFromCart(Integer customerId, Integer articleId);
 
     void addArticleToCart(Integer customerId, Integer articleId);
 
     void decrementArticleQuantityInCart(Integer customerId, Integer articleId);
 
-    Orderr checkOutCart(int customerId);
+    Orderr checkOutCart(Integer customerId);
+
+    Set<Orderr> getOrdersForCustomer(Integer customerId);
 
     Cart getCartForCustomer(Integer customerId);
 

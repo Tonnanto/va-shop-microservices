@@ -20,6 +20,8 @@
         <module>customer</module>
         <module>service-discovery</module>
         <module>api-gateway</module>
+        <module>customer-service-invoker</module>
+        <module>supplier-service-invoker</module>
     </modules>
 
     <properties>

@@ -4,6 +4,6 @@ import de.leuphana.va.onlineshop.customer.component.structure.Customer;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @ResponseBody
-public record CustomerCreateResponse(
+public record CustomerReadResponse(
         Customer customer
 ) {}
