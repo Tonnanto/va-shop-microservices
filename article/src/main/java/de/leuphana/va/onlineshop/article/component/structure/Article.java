@@ -1,66 +1,40 @@
 package de.leuphana.va.onlineshop.article.component.structure;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+public class Article {
+    private Integer articleId;
+    private String manufacturer;
+    private String name;
+    private float price;
 
-import javax.persistence.*;
-import java.io.Serializable;
+    public Integer getArticleId() {
+        return articleId;
+    }
 
-@Entity
-@JsonTypeInfo(
-		use = JsonTypeInfo.Id.NAME,
-		property = "articleType",
-		visible = true
-)
-@JsonSubTypes({
-		@JsonSubTypes.Type(value = CD.class, name = "CD"),
-		@JsonSubTypes.Type(value = Book.class, name = "Book")
-})
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Article implements Serializable {
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
+    }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer articleId;
-	private String manufacturer;
-	private String name;
-	private float price;
+    public String getManufacturer() {
+        return manufacturer;
+    }
 
-	public Article() {}
-//	public Article(int articleId) {
-//		this.articleId = articleId;
-//	}
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
 
-	public int getArticleId() {
-		return articleId;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getManufacturer() {
-		return manufacturer;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer = manufacturer;
-	}
+    public float getPrice() {
+        return price;
+    }
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public float getPrice() {
-		return price;
-	}
-
-	public void setArticleId(int articleId) {
-		this.articleId = articleId;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
-	}
+    public void setPrice(float price) {
+        this.price = price;
+    }
 }

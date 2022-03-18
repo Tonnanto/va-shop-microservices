@@ -1,8 +1,8 @@
 package de.leuphana.va.onlineshop.shop.connector;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
-import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticlesGetResponse;
-import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
+import de.leuphana.va.onlineshop.article.connector.dto.ArticleDto;
+import de.leuphana.va.onlineshop.article.connector.responses.AllArticlesGetResponse;
+import de.leuphana.va.onlineshop.article.connector.responses.ArticleGetResponse;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.connector.requests.AddRemoveArticleRequest;
 import de.leuphana.va.onlineshop.customer.connector.requests.CustomerCreateRequest;
@@ -34,13 +34,13 @@ public class ShopRestConnectorProvider {
 
     @GetMapping("article/{articleId}")
     public ArticleGetResponse getArticle(@PathVariable("articleId") Integer articleId) {
-        Article article = customerService.getArticle(articleId);
+        ArticleDto article = customerService.getArticle(articleId);
         return new ArticleGetResponse(article);
     }
 
     @GetMapping("articles")
     public AllArticlesGetResponse getArticles() {
-        Set<Article> articles = customerService.getArticles();
+        Set<ArticleDto> articles = customerService.getArticles();
         return new AllArticlesGetResponse(articles);
     }
 

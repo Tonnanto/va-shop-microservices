@@ -1,13 +1,13 @@
 package de.leuphana.va.onlineshop.article.connector;
 
 import de.leuphana.va.onlineshop.article.component.behaviour.ArticleComponentService;
-import de.leuphana.va.onlineshop.article.component.structure.Article;
-import de.leuphana.va.onlineshop.article.component.structure.Catalog;
-import de.leuphana.va.onlineshop.article.component.structure.requests.ArticleWriteRequest;
-import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticlesGetResponse;
-import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleWriteResponse;
-import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
-import de.leuphana.va.onlineshop.article.component.structure.responses.CatalogGetResponse;
+import de.leuphana.va.onlineshop.article.connector.dto.ArticleDto;
+import de.leuphana.va.onlineshop.article.connector.dto.CatalogDto;
+import de.leuphana.va.onlineshop.article.connector.requests.ArticleWriteRequest;
+import de.leuphana.va.onlineshop.article.connector.responses.AllArticlesGetResponse;
+import de.leuphana.va.onlineshop.article.connector.responses.ArticleWriteResponse;
+import de.leuphana.va.onlineshop.article.connector.responses.ArticleGetResponse;
+import de.leuphana.va.onlineshop.article.connector.responses.CatalogGetResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -24,19 +24,19 @@ public class ArticleRestConnectorProvider {
 
     @GetMapping(path = "{articleId}")
     public ArticleGetResponse getArticle(@PathVariable("articleId") Integer articleId) {
-        Article article = articleService.getArticle(articleId);
+        ArticleDto article = articleService.getArticle(articleId);
         return new ArticleGetResponse(article);
     }
 
     @GetMapping(path = "/all")
     public AllArticlesGetResponse getAllArticles() {
-        Set<Article> articles = articleService.getArticles();
+        Set<ArticleDto> articles = articleService.getArticles();
         return new AllArticlesGetResponse(articles);
     }
 
     @GetMapping(path = "/catalog")
     public CatalogGetResponse getCatalog() {
-        Catalog catalog = articleService.getCatalog();
+        CatalogDto catalog = articleService.getCatalog();
         return new CatalogGetResponse(catalog);
     }
 

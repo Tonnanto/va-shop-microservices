@@ -2,6 +2,10 @@ package de.leuphana.va.onlineshop.article.connector;
 
 import de.leuphana.va.onlineshop.article.component.structure.*;
 import de.leuphana.va.onlineshop.article.configuration.ArticleConfiguration;
+import de.leuphana.va.onlineshop.article.connector.dto.ArticleDto;
+import de.leuphana.va.onlineshop.article.connector.dto.BookDto;
+import de.leuphana.va.onlineshop.article.connector.dto.CDDto;
+import de.leuphana.va.onlineshop.article.connector.dto.CatalogDto;
 import org.junit.jupiter.api.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -16,26 +20,26 @@ import java.util.Set;
 public class ArticleSpringDataConnectorRequesterTest {
 
     private static ArticleSpringDataConnectorRequester articleDataConnectorRequester;
-    private static Set<Article> articleSet;
-    private static Catalog catalog;
+    private static Set<ArticleDto> articleSet;
+    private static CatalogDto catalog;
 
     @BeforeAll
     static void setUp() {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ArticleConfiguration.class);
         articleDataConnectorRequester = (ArticleSpringDataConnectorRequester) applicationContext.getBean("articleSpringDataConnectorRequester");
 
-        Article article1 = new Article();
+        ArticleDto article1 = new ArticleDto();
         article1.setName("Toller Artikel");
         article1.setPrice(420.69f);
 
-        Book article2 = new Book();
+        BookDto article2 = new BookDto();
         article2.setName("Tolles Buch");
         article2.setPrice(9.99f);
         article2.setManufacturer("Springer Verlag");
         article2.setAuthor("Anton Stamme");
         article2.setBookCategory(BookCategory.CRIME);
 
-        CD article3 = new CD();
+        CDDto article3 = new CDDto();
         article3.setName("Tolle CD");
         article3.setPrice(420.69f);
         article3.setArtist("Ranji & Berg");
@@ -43,7 +47,7 @@ public class ArticleSpringDataConnectorRequesterTest {
 
         articleSet = new HashSet<>(Arrays.asList(article1, article2, article3));
 
-        catalog = new Catalog();
+        catalog = new CatalogDto();
         catalog.setArticles(articleSet);
     }
 
@@ -68,7 +72,7 @@ public class ArticleSpringDataConnectorRequesterTest {
     @Test
     @Order(3)
     void canArticleBeInsertedIntoCatalog() {
-        Book book = new Book();
+        BookDto book = new BookDto();
         book.setName("Java in a nutshell");
         book.setPrice(10.5f);
         book.setBookCategory(BookCategory.POPULAR_SCIENCE);
@@ -81,8 +85,8 @@ public class ArticleSpringDataConnectorRequesterTest {
     @Test
     @Order(4)
     void areAllArticlesAvailable() {
-        Set<Article> foundArticles = articleDataConnectorRequester.findAllArticles();
-        for (Article article: articleSet) {
+        Set<ArticleDto> foundArticles = articleDataConnectorRequester.findAllArticles();
+        for (ArticleDto article: articleSet) {
             Assertions.assertTrue(foundArticles.stream().anyMatch(article1 -> article1.getArticleId() == article.getArticleId()));
         }
     }
@@ -90,7 +94,7 @@ public class ArticleSpringDataConnectorRequesterTest {
     @Test
     @Order(5)
     void canArticleBeFoundById() {
-        for (Article article: articleSet) {
+        for (ArticleDto article: articleSet) {
             Assertions.assertNotNull(articleDataConnectorRequester.findArticleById(article.getArticleId()));
         }
     }

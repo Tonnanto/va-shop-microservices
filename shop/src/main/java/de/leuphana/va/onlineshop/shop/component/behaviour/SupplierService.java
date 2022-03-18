@@ -1,15 +1,15 @@
 package de.leuphana.va.onlineshop.shop.component.behaviour;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
+import de.leuphana.va.onlineshop.article.connector.dto.ArticleDto;
 
 public interface SupplierService {
 
-    boolean insertArticle(Article article);
+    boolean insertArticle(ArticleDto article);
 
-    boolean updateArticle(Article article);
+    boolean updateArticle(ArticleDto article);
 
     boolean removeArticle(int articleId);
 
-    Article getArticle(int articleId);
+    ArticleDto getArticle(int articleId);
 
 }

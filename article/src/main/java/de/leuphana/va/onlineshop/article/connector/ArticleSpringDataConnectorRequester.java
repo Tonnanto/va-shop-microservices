@@ -1,7 +1,7 @@
 package de.leuphana.va.onlineshop.article.connector;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
-import de.leuphana.va.onlineshop.article.component.structure.Catalog;
+import de.leuphana.va.onlineshop.article.connector.dto.ArticleDto;
+import de.leuphana.va.onlineshop.article.connector.dto.CatalogDto;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
@@ -29,23 +29,23 @@ public class ArticleSpringDataConnectorRequester {
     // Operations for Article
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public void insertArticleIntoCatalog(Article article, String catalogId) {
-        Catalog foundCatalog = findCatalogById(catalogId);
+    public void insertArticleIntoCatalog(ArticleDto article, String catalogId) {
+        CatalogDto foundCatalog = findCatalogById(catalogId);
         if (foundCatalog == null) return;
         foundCatalog.addArticle(article);
         getCurrentSession().save(foundCatalog);
     }
 
-    public Set<Article> findAllArticles() {
-        Set<Article> articles = new HashSet<>();
+    public Set<ArticleDto> findAllArticles() {
+        Set<ArticleDto> articles = new HashSet<>();
 
         String queryString = "SELECT * FROM Article";
 
-        NativeQuery<Article> query = getCurrentSession().createNativeQuery(queryString, Article.class);
+        NativeQuery<ArticleDto> query = getCurrentSession().createNativeQuery(queryString, ArticleDto.class);
         List<?> results = query.getResultList();
 
         for (Object result: results) {
-            if (result instanceof Article article) {
+            if (result instanceof ArticleDto article) {
                 articles.add(article);
             }
         }
@@ -53,11 +53,11 @@ public class ArticleSpringDataConnectorRequester {
         return articles;
     }
 
-    public Article findArticleById(int id) {
-        return getCurrentSession().find(Article.class, id);
+    public ArticleDto findArticleById(int id) {
+        return getCurrentSession().find(ArticleDto.class, id);
     }
 
-    public boolean updateArticle(Article article) {
+    public boolean updateArticle(ArticleDto article) {
         try {
             getCurrentSession().update(article);
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public class ArticleSpringDataConnectorRequester {
     }
 
     public void deleteArticle(int id) {
-        Article article = findArticleById(id);
+        ArticleDto article = findArticleById(id);
         getCurrentSession().delete(article);
     }
 
@@ -76,20 +76,20 @@ public class ArticleSpringDataConnectorRequester {
     // Operations for Catalog
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public void saveCatalog(Catalog catalog) {
+    public void saveCatalog(CatalogDto catalog) {
         getCurrentSession().saveOrUpdate(catalog);
     }
 
-    public Set<Catalog> findAllCatalogs() {
-        Set<Catalog> catalogs = new HashSet<>();
+    public Set<CatalogDto> findAllCatalogs() {
+        Set<CatalogDto> catalogs = new HashSet<>();
 
         String queryString = "SELECT * FROM Catalog";
 
-        NativeQuery<Catalog> query = getCurrentSession().createNativeQuery(queryString, Catalog.class);
+        NativeQuery<CatalogDto> query = getCurrentSession().createNativeQuery(queryString, CatalogDto.class);
         List<?> results = query.getResultList();
 
         for (Object result: results) {
-            if (result instanceof Catalog catalog) {
+            if (result instanceof CatalogDto catalog) {
                 catalogs.add(catalog);
             }
         }
@@ -97,12 +97,12 @@ public class ArticleSpringDataConnectorRequester {
         return catalogs;
     }
 
-    public Catalog findCatalogById(String id) {
-        return getCurrentSession().find(Catalog.class, id);
+    public CatalogDto findCatalogById(String id) {
+        return getCurrentSession().find(CatalogDto.class, id);
     }
 
     public void deleteCatalog(String id) {
-        Catalog catalog = findCatalogById(id);
+        CatalogDto catalog = findCatalogById(id);
         getCurrentSession().delete(catalog);
     }
 }

@@ -1,17 +1,17 @@
 package de.leuphana.va.onlineshop.shop.component.behaviour;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
+import de.leuphana.va.onlineshop.article.connector.dto.ArticleDto;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SupplierServiceImpl implements SupplierService {
     @Override
-    public boolean insertArticle(Article article) {
+    public boolean insertArticle(ArticleDto article) {
         return false;
     }
 
     @Override
-    public boolean updateArticle(Article article) {
+    public boolean updateArticle(ArticleDto article) {
         return false;
     }
 
@@ -21,7 +21,7 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public Article getArticle(int articleId) {
+    public ArticleDto getArticle(int articleId) {
         return null;
     }
 }

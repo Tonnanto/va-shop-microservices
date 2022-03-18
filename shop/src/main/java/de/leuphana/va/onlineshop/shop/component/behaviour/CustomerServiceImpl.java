@@ -1,8 +1,8 @@
 package de.leuphana.va.onlineshop.shop.component.behaviour;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
-import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticlesGetResponse;
-import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
+import de.leuphana.va.onlineshop.article.connector.dto.ArticleDto;
+import de.leuphana.va.onlineshop.article.connector.responses.AllArticlesGetResponse;
+import de.leuphana.va.onlineshop.article.connector.responses.ArticleGetResponse;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.component.structure.CartItem;
 import de.leuphana.va.onlineshop.customer.connector.requests.*;
@@ -36,14 +36,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Article getArticle(Integer articleId) {
+    public ArticleDto getArticle(Integer articleId) {
         ArticleGetResponse responseBody = apiGatewayRestConnectorRequester.getArticle(articleId).getBody();
         if (responseBody == null) return null;
         return responseBody.article();
     }
 
     @Override
-    public Set<Article> getArticles() {
+    public Set<ArticleDto> getArticles() {
         AllArticlesGetResponse responseBody = apiGatewayRestConnectorRequester.getArticles().getBody();
         if (responseBody == null) return null;
         return responseBody.articles();

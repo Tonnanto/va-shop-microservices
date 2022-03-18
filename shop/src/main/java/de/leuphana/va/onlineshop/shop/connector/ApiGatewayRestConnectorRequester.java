@@ -1,8 +1,8 @@
 package de.leuphana.va.onlineshop.shop.connector;
 
-import de.leuphana.va.onlineshop.article.component.structure.requests.ArticleWriteRequest;
-import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticlesGetResponse;
-import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
+import de.leuphana.va.onlineshop.article.connector.requests.ArticleWriteRequest;
+import de.leuphana.va.onlineshop.article.connector.responses.AllArticlesGetResponse;
+import de.leuphana.va.onlineshop.article.connector.responses.ArticleGetResponse;
 import de.leuphana.va.onlineshop.customer.connector.requests.AddRemoveArticleRequest;
 import de.leuphana.va.onlineshop.customer.connector.requests.CustomerCreateRequest;
 import de.leuphana.va.onlineshop.customer.connector.responses.CartGetResponse;

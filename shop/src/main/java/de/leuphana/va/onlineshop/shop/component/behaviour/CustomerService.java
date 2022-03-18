@@ -1,6 +1,6 @@
 package de.leuphana.va.onlineshop.shop.component.behaviour;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
+import de.leuphana.va.onlineshop.article.connector.dto.ArticleDto;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 
@@ -10,9 +10,9 @@ public interface CustomerService {
 
     Integer createCustomerWithCart(String name, String address);
 
-    Article getArticle(Integer articleId);
+    ArticleDto getArticle(Integer articleId);
 
-    Set<Article> getArticles();
+    Set<ArticleDto> getArticles();
 
     void removeArticleFromCart(Integer customerId, Integer articleId);
 

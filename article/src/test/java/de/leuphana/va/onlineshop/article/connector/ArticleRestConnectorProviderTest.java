@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.leuphana.va.onlineshop.article.component.ArticleApplication;
 import de.leuphana.va.onlineshop.article.component.behaviour.ArticleComponentServiceImpl;
-import de.leuphana.va.onlineshop.article.component.structure.Catalog;
-import de.leuphana.va.onlineshop.article.component.structure.responses.CatalogGetResponse;
+import de.leuphana.va.onlineshop.article.connector.dto.CatalogDto;
+import de.leuphana.va.onlineshop.article.connector.responses.CatalogGetResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class ArticleRestConnectorProviderTest {
         Assertions.assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
         CatalogGetResponse catalogGetResponse = mapFromJson(content, CatalogGetResponse.class);
-        Catalog catalog = catalogGetResponse.catalog();
+        CatalogDto catalog = catalogGetResponse.catalog();
 
         Assertions.assertNotNull(catalog);
         Assertions.assertEquals(ArticleComponentServiceImpl.mainCatalogId, catalog.getCatalogId());

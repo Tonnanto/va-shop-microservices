@@ -1,21 +1,21 @@
 package de.leuphana.va.onlineshop.article.component.behaviour;
 
-import de.leuphana.va.onlineshop.article.component.structure.Article;
-import de.leuphana.va.onlineshop.article.component.structure.Catalog;
+import de.leuphana.va.onlineshop.article.connector.dto.ArticleDto;
+import de.leuphana.va.onlineshop.article.connector.dto.CatalogDto;
 
 import java.util.Set;
 
 public interface ArticleComponentService {
 
-    Catalog getCatalog();
+    CatalogDto getCatalog();
 
-    Article getArticle(int articleId);
+    ArticleDto getArticle(int articleId);
 
-    Set<Article> getArticles();
+    Set<ArticleDto> getArticles();
 
-    boolean insertArticle(Article article);
+    boolean insertArticle(ArticleDto article);
 
-    boolean updateArticle(Article article);
+    boolean updateArticle(ArticleDto article);
 
     boolean removeArticle(int articleId);
 
