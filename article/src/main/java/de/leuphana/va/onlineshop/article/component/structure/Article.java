@@ -28,11 +28,8 @@ public class Article implements Serializable {
 	private float price;
 
 	public Article() {}
-//	public Article(int articleId) {
-//		this.articleId = articleId;
-//	}
 
-	public int getArticleId() {
+	public Integer getArticleId() {
 		return articleId;
 	}
 
@@ -56,7 +53,7 @@ public class Article implements Serializable {
 		return price;
 	}
 
-	public void setArticleId(int articleId) {
+	public void setArticleId(Integer articleId) {
 		this.articleId = articleId;
 	}
 

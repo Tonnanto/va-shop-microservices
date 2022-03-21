@@ -1,27 +1,48 @@
 package de.leuphana.va.onlineshop.shop.component.behaviour;
 
 import de.leuphana.va.onlineshop.article.component.structure.Article;
+import de.leuphana.va.onlineshop.article.component.structure.requests.ArticleWriteRequest;
+import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
+import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleWriteResponse;
+import de.leuphana.va.onlineshop.shop.connector.ApiGatewayRestConnectorRequester;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SupplierServiceImpl implements SupplierService {
+
+    public SupplierServiceImpl(ApiGatewayRestConnectorRequester apiGatewayRestConnectorRequester) {
+        this.apiGatewayRestConnectorRequester = apiGatewayRestConnectorRequester;
+    }
+
+    private final ApiGatewayRestConnectorRequester apiGatewayRestConnectorRequester;
+
     @Override
     public boolean insertArticle(Article article) {
-        return false;
+        ArticleWriteRequest requestBody = new ArticleWriteRequest(article);
+        ArticleWriteResponse responseBody = apiGatewayRestConnectorRequester.createArticle(requestBody).getBody();
+        if (responseBody == null) return false;
+        return responseBody.success();
     }
 
     @Override
     public boolean updateArticle(Article article) {
-        return false;
+        ArticleWriteRequest requestBody = new ArticleWriteRequest(article);
+        ArticleWriteResponse responseBody = apiGatewayRestConnectorRequester.updateArticle(requestBody).getBody();
+        if (responseBody == null) return false;
+        return responseBody.success();
     }
 
     @Override
     public boolean removeArticle(int articleId) {
-        return false;
+        ArticleWriteResponse responseBody = apiGatewayRestConnectorRequester.deleteArticle(articleId).getBody();
+        if (responseBody == null) return false;
+        return responseBody.success();
     }
 
     @Override
     public Article getArticle(int articleId) {
-        return null;
+        ArticleGetResponse responseBody = apiGatewayRestConnectorRequester.getArticle(articleId).getBody();
+        if (responseBody == null) return null;
+        return responseBody.article();
     }
 }

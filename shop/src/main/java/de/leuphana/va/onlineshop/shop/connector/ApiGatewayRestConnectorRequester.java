@@ -3,6 +3,7 @@ package de.leuphana.va.onlineshop.shop.connector;
 import de.leuphana.va.onlineshop.article.component.structure.requests.ArticleWriteRequest;
 import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticlesGetResponse;
 import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
+import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleWriteResponse;
 import de.leuphana.va.onlineshop.customer.connector.requests.AddRemoveArticleRequest;
 import de.leuphana.va.onlineshop.customer.connector.requests.CustomerCreateRequest;
 import de.leuphana.va.onlineshop.customer.connector.responses.CartGetResponse;
@@ -52,7 +53,7 @@ public interface ApiGatewayRestConnectorRequester {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    ResponseEntity<AllArticlesGetResponse> createArticle(@RequestBody ArticleWriteRequest requestBody);
+    ResponseEntity<ArticleWriteResponse> createArticle(@RequestBody ArticleWriteRequest requestBody);
 
     @RequestMapping(
             method = RequestMethod.POST,
@@ -60,14 +61,14 @@ public interface ApiGatewayRestConnectorRequester {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    ResponseEntity<AllArticlesGetResponse> updateArticle(@RequestBody ArticleWriteRequest requestBody);
+    ResponseEntity<ArticleWriteResponse> updateArticle(@RequestBody ArticleWriteRequest requestBody);
 
     @RequestMapping(
             method = RequestMethod.DELETE,
             value = "/api/v1/article/{articleId}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    ResponseEntity<AllArticlesGetResponse> updateArticle(@PathVariable("articleId") Integer articleId);
+    ResponseEntity<ArticleWriteResponse> deleteArticle(@PathVariable("articleId") Integer articleId);
 
 
     // ++++++++++++++++++++++++++++++++++++++++ CUSTOMER +++++++++++++++++++++++++++++++++++++++++++

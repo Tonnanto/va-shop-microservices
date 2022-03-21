@@ -1,8 +1,10 @@
 package de.leuphana.va.onlineshop.shop.connector;
 
 import de.leuphana.va.onlineshop.article.component.structure.Article;
+import de.leuphana.va.onlineshop.article.component.structure.requests.ArticleWriteRequest;
 import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticlesGetResponse;
 import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
+import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleWriteResponse;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.connector.requests.AddRemoveArticleRequest;
 import de.leuphana.va.onlineshop.customer.connector.requests.CustomerCreateRequest;
@@ -21,6 +23,11 @@ public class ShopRestConnectorProvider {
 
     private final CustomerService customerService;
     private final SupplierService supplierService;
+
+
+    //================================================================================
+    // CUSTOMER SERVICE
+    //================================================================================
 
     public ShopRestConnectorProvider(CustomerService customerService, SupplierService supplierService) {
         this.customerService = customerService;
@@ -77,4 +84,34 @@ public class ShopRestConnectorProvider {
         return new OrdersGetResponse(orders);
     }
 
+
+    //================================================================================
+    // SUPPLIER SERVICE
+    //================================================================================
+
+    @GetMapping("supplier/article/{articleId}")
+    public ArticleGetResponse getArticleForSupplier(@PathVariable("articleId") Integer articleId) {
+        Article article = supplierService.getArticle(articleId);
+        return new ArticleGetResponse(article);
+    }
+
+    @PostMapping("supplier/article/create")
+    public ArticleWriteResponse insertArticle(@RequestBody ArticleWriteRequest requestBody) {
+        Article article = requestBody.article();
+        article.setArticleId(null);
+        boolean success = supplierService.insertArticle(article);
+        return new ArticleWriteResponse(success);
+    }
+
+    @PostMapping("supplier/article/update")
+    public ArticleWriteResponse updateArticle(@RequestBody ArticleWriteRequest requestBody) {
+        boolean success = supplierService.updateArticle(requestBody.article());
+        return new ArticleWriteResponse(success);
+    }
+
+    @DeleteMapping("supplier/article/{articleId}")
+    public ArticleWriteResponse removeArticle(@PathVariable("articleId") Integer articleId) {
+        boolean success = supplierService.removeArticle(articleId);
+        return new ArticleWriteResponse(success);
+    }
 }
