@@ -1,9 +1,12 @@
 package de.leuphana.va.onlineshop.customer.component.structure;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer {
 
 	@Id

@@ -1,18 +1,21 @@
 package de.leuphana.va.onlineshop.article.connector;
 
 import de.leuphana.va.onlineshop.article.component.structure.*;
-import de.leuphana.va.onlineshop.article.configuration.ArticleConfiguration;
+import de.leuphana.va.onlineshop.article.configuration.ArticleTestConfiguration;
 import org.junit.jupiter.api.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ContextConfiguration(classes = { ArticleConfiguration.class })
+@ContextConfiguration(classes = { ArticleTestConfiguration.class })
+@ActiveProfiles("test")
 public class ArticleSpringDataConnectorRequesterTest {
 
     private static ArticleSpringDataConnectorRequester articleDataConnectorRequester;
@@ -21,8 +24,9 @@ public class ArticleSpringDataConnectorRequesterTest {
 
     @BeforeAll
     static void setUp() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ArticleConfiguration.class);
-        articleDataConnectorRequester = (ArticleSpringDataConnectorRequester) applicationContext.getBean("articleSpringDataConnectorRequester");
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ArticleTestConfiguration.class);
+        System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
+        articleDataConnectorRequester = (ArticleSpringDataConnectorRequester) applicationContext.getBean("testArticleSpringDataConnectorRequester");
 
         Article article1 = new Article();
         article1.setName("Toller Artikel");
@@ -83,7 +87,7 @@ public class ArticleSpringDataConnectorRequesterTest {
     void areAllArticlesAvailable() {
         Set<Article> foundArticles = articleDataConnectorRequester.findAllArticles();
         for (Article article: articleSet) {
-            Assertions.assertTrue(foundArticles.stream().anyMatch(article1 -> article1.getArticleId() == article.getArticleId()));
+            Assertions.assertTrue(foundArticles.stream().anyMatch(article1 -> Objects.equals(article1.getArticleId(), article.getArticleId())));
         }
     }
 

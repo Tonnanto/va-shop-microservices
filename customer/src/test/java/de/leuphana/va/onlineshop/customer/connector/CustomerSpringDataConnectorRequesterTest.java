@@ -4,13 +4,16 @@ import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.component.structure.CartItem;
 import de.leuphana.va.onlineshop.customer.component.structure.Customer;
 import de.leuphana.va.onlineshop.customer.configuration.CustomerConfiguration;
+import de.leuphana.va.onlineshop.customer.configuration.CustomerTestConfiguration;
 import org.junit.jupiter.api.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ContextConfiguration(classes = { CustomerConfiguration.class })
+@ContextConfiguration(classes = { CustomerTestConfiguration.class })
+@ActiveProfiles("test")
 public class CustomerSpringDataConnectorRequesterTest {
 
     private static CustomerSpringDataConnectorRequester customerDataConnectorRequester;
@@ -19,8 +22,8 @@ public class CustomerSpringDataConnectorRequesterTest {
 
     @BeforeAll
     static void setUp() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(CustomerConfiguration.class);
-        customerDataConnectorRequester = (CustomerSpringDataConnectorRequester) applicationContext.getBean("customerSpringDataConnectorRequester");
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(CustomerTestConfiguration.class);
+        customerDataConnectorRequester = (CustomerSpringDataConnectorRequester) applicationContext.getBean("testCustomerSpringDataConnectorRequester");
 
         cart = new Cart();
         customer = new Customer(cart);

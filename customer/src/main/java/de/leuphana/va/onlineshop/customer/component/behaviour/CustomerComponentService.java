@@ -7,6 +7,8 @@ public interface CustomerComponentService {
 
     Customer createCustomerWithCart(String name, String address);
 
+    Customer getCustomer(Integer customerId);
+
     void removeArticleFromCart(Integer customerId, int articleId);
 
     void addArticleToCart(Integer customerId, Integer articleId);

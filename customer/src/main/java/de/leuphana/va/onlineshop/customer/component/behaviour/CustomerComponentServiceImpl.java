@@ -16,6 +16,11 @@ public class CustomerComponentServiceImpl implements CustomerComponentService {
     }
 
     @Override
+    public Customer getCustomer(Integer customerId) {
+        return dataConnector.findCustomerById(customerId);
+    }
+
+    @Override
     public Customer createCustomerWithCart(String name, String address) {
         Customer newCustomer = new Customer();
         newCustomer.setName(name);

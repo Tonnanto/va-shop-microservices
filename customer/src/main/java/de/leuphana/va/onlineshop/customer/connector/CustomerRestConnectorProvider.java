@@ -7,6 +7,8 @@ import de.leuphana.va.onlineshop.customer.connector.responses.*;
 import de.leuphana.va.onlineshop.customer.connector.requests.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 //@Slf4j
 @RestController
 @RequestMapping("api/v1/customer")
@@ -17,6 +19,18 @@ public class CustomerRestConnectorProvider {
     public CustomerRestConnectorProvider(CustomerComponentService customerService) {
         this.customerService = customerService;
     }
+
+    @GetMapping(path = "{customerId}")
+    public CustomerReadResponse getArticle(@PathVariable("customerId") Integer customerId) {
+        Customer customer = customerService.getCustomer(customerId);
+        return new CustomerReadResponse(customer);
+    }
+
+//    @GetMapping(path = "/all")
+//    public AllArticlesGetResponse getAllArticles() {
+//        Set<Article> articles = articleService.getArticles();
+//        return new AllArticlesGetResponse(articles);
+//    }
 
     @PostMapping("create")
     public CustomerReadResponse createCustomer(@RequestBody CustomerCreateRequest createCustomerRequest) {

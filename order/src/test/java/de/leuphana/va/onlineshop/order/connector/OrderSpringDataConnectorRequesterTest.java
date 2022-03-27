@@ -3,13 +3,16 @@ package de.leuphana.va.onlineshop.order.connector;
 import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 import de.leuphana.va.onlineshop.order.component.structure.OrderPosition;
 import de.leuphana.va.onlineshop.order.configuration.OrderConfiguration;
+import de.leuphana.va.onlineshop.order.configuration.OrderTestConfiguration;
 import org.junit.jupiter.api.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ContextConfiguration(classes = { OrderConfiguration.class })
+@ContextConfiguration(classes = { OrderTestConfiguration.class })
+@ActiveProfiles("test")
 public class OrderSpringDataConnectorRequesterTest {
 
     private static OrderSpringDataConnectorRequester orderDataConnectorRequester;
@@ -17,8 +20,8 @@ public class OrderSpringDataConnectorRequesterTest {
 
     @BeforeAll
     static void setUp() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(OrderConfiguration.class);
-        orderDataConnectorRequester = (OrderSpringDataConnectorRequester) applicationContext.getBean("orderSpringDataConnectorRequester");
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(OrderTestConfiguration.class);
+        orderDataConnectorRequester = (OrderSpringDataConnectorRequester) applicationContext.getBean("testOrderSpringDataConnectorRequester");
 
         OrderPosition orderPosition1 = new OrderPosition();
         orderPosition1.setArticleId(1);

@@ -1,5 +1,7 @@
 package de.leuphana.va.onlineshop.customer.component.structure;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Cart {
 
 	@Id
