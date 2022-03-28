@@ -6,11 +6,13 @@ import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticl
 import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
 import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleWriteResponse;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
+import de.leuphana.va.onlineshop.customer.component.structure.Customer;
 import de.leuphana.va.onlineshop.customer.connector.requests.AddRemoveArticleRequest;
 import de.leuphana.va.onlineshop.customer.connector.requests.CustomerCreateRequest;
 import de.leuphana.va.onlineshop.customer.connector.responses.CartGetResponse;
+import de.leuphana.va.onlineshop.customer.connector.responses.CustomerReadResponse;
 import de.leuphana.va.onlineshop.order.component.structure.Orderr;
-import de.leuphana.va.onlineshop.order.component.structure.responses.OrderGetResponse;
+import de.leuphana.va.onlineshop.order.component.structure.responses.OrderWriteResponse;
 import de.leuphana.va.onlineshop.order.component.structure.responses.OrdersGetResponse;
 import de.leuphana.va.onlineshop.shop.component.behaviour.CustomerService;
 import de.leuphana.va.onlineshop.shop.component.behaviour.SupplierService;
@@ -37,6 +39,12 @@ public class ShopRestConnectorProvider {
     @PostMapping("customer/create")
     public Integer createCustomerWithCart(@RequestBody CustomerCreateRequest requestBody) {
         return customerService.createCustomerWithCart(requestBody.name(), requestBody.address());
+    }
+
+    @GetMapping("customer/{customerId}")
+    public CustomerReadResponse getCustomer(@PathVariable("customerId") Integer customerId) {
+        Customer customer = customerService.getCustomer(customerId);
+        return new CustomerReadResponse(customer);
     }
 
     @GetMapping("article/{articleId}")
@@ -67,9 +75,9 @@ public class ShopRestConnectorProvider {
     }
 
     @PostMapping("cart/checkout/{customerId}")
-    public OrderGetResponse checkOutCart(@PathVariable("customerId") Integer customerId) {
-        Orderr order = customerService.checkOutCart(customerId);
-        return new OrderGetResponse(order);
+    public OrderWriteResponse checkOutCart(@PathVariable("customerId") Integer customerId) {
+        boolean success = customerService.checkOutCart(customerId);
+        return new OrderWriteResponse(success);
     }
 
     @GetMapping("cart/{customerId}")

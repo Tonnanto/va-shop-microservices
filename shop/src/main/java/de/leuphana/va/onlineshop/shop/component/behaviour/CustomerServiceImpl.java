@@ -5,12 +5,14 @@ import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticl
 import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.component.structure.CartItem;
-import de.leuphana.va.onlineshop.customer.connector.requests.*;
-import de.leuphana.va.onlineshop.customer.connector.responses.*;
+import de.leuphana.va.onlineshop.customer.component.structure.Customer;
+import de.leuphana.va.onlineshop.customer.connector.requests.AddRemoveArticleRequest;
+import de.leuphana.va.onlineshop.customer.connector.requests.CustomerCreateRequest;
+import de.leuphana.va.onlineshop.customer.connector.responses.CartGetResponse;
+import de.leuphana.va.onlineshop.customer.connector.responses.CustomerReadResponse;
 import de.leuphana.va.onlineshop.order.component.structure.OrderPosition;
 import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 import de.leuphana.va.onlineshop.order.component.structure.requests.OrderCreateRequest;
-import de.leuphana.va.onlineshop.order.component.structure.responses.OrderGetResponse;
 import de.leuphana.va.onlineshop.order.component.structure.responses.OrderWriteResponse;
 import de.leuphana.va.onlineshop.order.component.structure.responses.OrdersGetResponse;
 import de.leuphana.va.onlineshop.shop.connector.ApiGatewayRestConnectorRequester;
@@ -33,6 +35,13 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerReadResponse responseBody = apiGatewayRestConnectorRequester.createCustomer(requestBody).getBody();
         if (responseBody == null) return null;
         return responseBody.customer().getCustomerId();
+    }
+
+    @Override
+    public Customer getCustomer(Integer customerId) {
+        CustomerReadResponse responseBody = apiGatewayRestConnectorRequester.getCustomer(customerId).getBody();
+        if (responseBody == null) return null;
+        return responseBody.customer();
     }
 
     @Override
@@ -69,12 +78,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Orderr checkOutCart(Integer customerId) {
+    public boolean checkOutCart(Integer customerId) {
         // find cart
         Cart cart = getCartForCustomer(customerId);
 
         // check cart is not empty
-        if (cart.getCartItems().isEmpty()) return null; // TODO: error message
+        if (cart.getCartItems().isEmpty()) return false;
 
         // create order
         Orderr order = new Orderr();
@@ -96,9 +105,9 @@ public class CustomerServiceImpl implements CustomerService {
         // save order
         OrderCreateRequest orderCreateRequest = new OrderCreateRequest(order);
         OrderWriteResponse orderCreateResponse = apiGatewayRestConnectorRequester.createOrder(orderCreateRequest).getBody();
-        OrderGetResponse orderGetResponse = apiGatewayRestConnectorRequester.getOrder(order.getOrderId()).getBody();
-        if (orderGetResponse == null) return null;
-        return orderGetResponse.order(); // TODO: unexpectedly returned null
+//        OrderGetResponse orderGetResponse = apiGatewayRestConnectorRequester.getOrder(order.getOrderId()).getBody();
+        if (orderCreateResponse == null) return false;
+        return orderCreateResponse.success();
     }
 
     @Override

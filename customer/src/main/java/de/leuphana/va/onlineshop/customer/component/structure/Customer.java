@@ -1,12 +1,11 @@
 package de.leuphana.va.onlineshop.customer.component.structure;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import de.leuphana.va.onlineshop.customer.connector.converter.SetStringConverter;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer {
 
 	@Id
@@ -18,8 +17,8 @@ public class Customer {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Cart cart;
 
-	@ElementCollection
-	private Set<Integer> orderIds;
+//	@Convert(converter = SetStringConverter.class)
+//	private Set<Integer> orderIds;
 
 	public Customer() {
 		this.cart = new Cart();
@@ -37,13 +36,17 @@ public class Customer {
 		return cart;
 	}
 	
-	public void addOrderId(int orderId) {
-		orderIds.add(orderId);
-	}
-
-	public Set<Integer> getOrderIds() {
-		return orderIds;
-	}
+//	public void addOrderId(int orderId) {
+//		orderIds.add(orderId);
+//	}
+//
+//	public Set<Integer> getOrderIds() {
+//		return orderIds;
+//	}
+//
+//	public void setOrderIds(Set<Integer> orderIds) {
+//		this.orderIds = orderIds;
+//	}
 
 	public String getName() {
 		return name;
