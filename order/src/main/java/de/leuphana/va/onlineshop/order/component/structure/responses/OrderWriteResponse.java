@@ -4,5 +4,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ResponseBody
 public record OrderWriteResponse(
-   boolean success
-) {}
+        boolean success
+) {
+}

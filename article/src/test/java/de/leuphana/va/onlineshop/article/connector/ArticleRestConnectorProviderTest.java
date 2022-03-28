@@ -50,6 +50,7 @@ public class ArticleRestConnectorProviderTest {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(obj);
     }
+
     protected <T> T mapFromJson(String json, Class<T> clazz)
             throws IOException {
 
@@ -91,9 +92,9 @@ public class ArticleRestConnectorProviderTest {
 
         String uri = "/api/v1/article/create";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(requestJson)
-                .characterEncoding("utf-8"))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(requestJson)
+                        .characterEncoding("utf-8"))
                 .andReturn();
 
         int status = mvcResult.getResponse().getStatus();

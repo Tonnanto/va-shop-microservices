@@ -46,6 +46,7 @@ public class OrderRestConnectorProviderTest {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(obj);
     }
+
     protected <T> T mapFromJson(String json, Class<T> clazz)
             throws IOException {
 

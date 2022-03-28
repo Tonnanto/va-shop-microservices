@@ -51,8 +51,4 @@ public class CustomerComponentServiceImpl implements CustomerComponentService {
         return dataConnector.getCartForCustomer(customerId);
     }
 
-//    @Override
-//    public Orderr checkOutCart(int customerId) {
-//        return null;
-//    }
 }

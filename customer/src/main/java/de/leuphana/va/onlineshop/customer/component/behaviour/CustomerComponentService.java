@@ -17,6 +17,4 @@ public interface CustomerComponentService {
 
     Cart getCartForCustomer(Integer customerId);
 
-//    Orderr checkOutCart(int customerId);
-
 }

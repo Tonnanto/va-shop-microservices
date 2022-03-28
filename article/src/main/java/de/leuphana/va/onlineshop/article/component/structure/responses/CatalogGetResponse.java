@@ -5,5 +5,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ResponseBody
 public record CatalogGetResponse(
-   Catalog catalog
-) {}
+        Catalog catalog
+) {
+}

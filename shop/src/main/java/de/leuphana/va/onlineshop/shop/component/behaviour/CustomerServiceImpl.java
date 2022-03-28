@@ -23,11 +23,11 @@ import java.util.Set;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
+    private final ApiGatewayRestConnectorRequester apiGatewayRestConnectorRequester;
+
     public CustomerServiceImpl(ApiGatewayRestConnectorRequester apiGatewayRestConnectorRequester) {
         this.apiGatewayRestConnectorRequester = apiGatewayRestConnectorRequester;
     }
-
-    private final ApiGatewayRestConnectorRequester apiGatewayRestConnectorRequester;
 
     @Override
     public Integer createCustomerWithCart(String name, String address) {
@@ -90,7 +90,7 @@ public class CustomerServiceImpl implements CustomerService {
         order.setCustomerId(customerId);
 
         // for every cart item
-        for (CartItem cartItem: cart.getCartItems()) {
+        for (CartItem cartItem : cart.getCartItems()) {
             // remove cart item from cart
             AddRemoveArticleRequest removeArticleRequest = new AddRemoveArticleRequest(customerId, cartItem.getArticleId());
             apiGatewayRestConnectorRequester.removeArticleFromCart(removeArticleRequest);

@@ -20,36 +20,7 @@ import java.util.*;
 @Service
 public class CustomerServiceInvoker {
 
-    enum CustomerShopAction {
-        SHOW_CATALOG, CREATE_CUSTOMER, LOGIN, SHOW_CART,  SHOW_ORDERS, LOGOUT, STOP;
-
-        public String text() {
-            return switch (this) {
-                case SHOW_CATALOG -> "Show Catalog";
-                case CREATE_CUSTOMER -> "Create new customer";
-                case LOGIN -> "Login";
-                case SHOW_CART -> "Show my cart";
-                case SHOW_ORDERS -> "Show my orders";
-                case LOGOUT -> "Logout";
-                case STOP -> "Stop App";
-            };
-        }
-
-        public void execute(CustomerServiceInvoker controller) {
-            switch (this) {
-                case SHOW_CATALOG -> controller.showCatalog();
-                case CREATE_CUSTOMER -> controller.createCustomer();
-                case LOGIN -> controller.login();
-                case SHOW_CART -> controller.showCart();
-                case SHOW_ORDERS -> controller.showOrders();
-                case LOGOUT -> controller.customer = null;
-                case STOP -> controller.isAppRunning = false;
-            }
-        }
-    }
-
     ShopRestConnectorRequester shopRestConnector;
-
     Customer customer;
     private boolean isAppRunning = true;
 
@@ -57,7 +28,7 @@ public class CustomerServiceInvoker {
 
         Set<String> loggers = new HashSet<>(Arrays.asList("org.apache.http", "groovyx.net.http"));
 
-        for(String log:loggers) {
+        for (String log : loggers) {
             Logger logger = (Logger) LoggerFactory.getLogger(log);
             logger.setLevel(Level.INFO);
             logger.setAdditive(false);
@@ -76,7 +47,6 @@ public class CustomerServiceInvoker {
         }
 
     }
-
 
     public CustomerShopAction selectAction() {
 
@@ -110,11 +80,6 @@ public class CustomerServiceInvoker {
         int selection = view.displaySelection();
         return options.get(selection);
     }
-
-
-    //================================================================================
-    // The following methods are being called by the corresponding actions.
-    //================================================================================
 
     private void showOrders() {
         // assert user != null else display error message
@@ -161,6 +126,11 @@ public class CustomerServiceInvoker {
             e.printStackTrace();
         }
     }
+
+
+    //================================================================================
+    // The following methods are being called by the corresponding actions.
+    //================================================================================
 
     private void showOrder(Orderr order) {
         // assert user != null else display error message
@@ -419,7 +389,8 @@ public class CustomerServiceInvoker {
                 List<String> options = new ArrayList<>();
                 options.add("Back");
                 if (customer != null) options.add("Add to Cart");
-                if (customer != null && customer.getCart().getCartItemsMap().containsKey(article.getArticleId())) options.add("Remove from Cart");
+                if (customer != null && customer.getCart().getCartItemsMap().containsKey(article.getArticleId()))
+                    options.add("Remove from Cart");
                 return options;
             }
         };
@@ -476,5 +447,33 @@ public class CustomerServiceInvoker {
                 return message;
             }
         }.display();
+    }
+
+    enum CustomerShopAction {
+        SHOW_CATALOG, CREATE_CUSTOMER, LOGIN, SHOW_CART, SHOW_ORDERS, LOGOUT, STOP;
+
+        public String text() {
+            return switch (this) {
+                case SHOW_CATALOG -> "Show Catalog";
+                case CREATE_CUSTOMER -> "Create new customer";
+                case LOGIN -> "Login";
+                case SHOW_CART -> "Show my cart";
+                case SHOW_ORDERS -> "Show my orders";
+                case LOGOUT -> "Logout";
+                case STOP -> "Stop App";
+            };
+        }
+
+        public void execute(CustomerServiceInvoker controller) {
+            switch (this) {
+                case SHOW_CATALOG -> controller.showCatalog();
+                case CREATE_CUSTOMER -> controller.createCustomer();
+                case LOGIN -> controller.login();
+                case SHOW_CART -> controller.showCart();
+                case SHOW_ORDERS -> controller.showOrders();
+                case LOGOUT -> controller.customer = null;
+                case STOP -> controller.isAppRunning = false;
+            }
+        }
     }
 }

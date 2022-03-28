@@ -5,8 +5,8 @@ import de.leuphana.va.onlineshop.article.component.structure.Article;
 import de.leuphana.va.onlineshop.article.component.structure.Catalog;
 import de.leuphana.va.onlineshop.article.component.structure.requests.ArticleWriteRequest;
 import de.leuphana.va.onlineshop.article.component.structure.responses.AllArticlesGetResponse;
-import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleWriteResponse;
 import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleGetResponse;
+import de.leuphana.va.onlineshop.article.component.structure.responses.ArticleWriteResponse;
 import de.leuphana.va.onlineshop.article.component.structure.responses.CatalogGetResponse;
 import org.springframework.web.bind.annotation.*;
 

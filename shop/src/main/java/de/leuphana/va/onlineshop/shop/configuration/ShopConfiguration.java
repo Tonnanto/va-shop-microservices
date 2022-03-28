@@ -5,9 +5,4 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ShopConfiguration {
 
-//    @Bean
-//    public ArticleRestConnectorRequester articleRestConnectorRequester() {
-//        return new ArticleRestConnectorRequester();
-//    }
-
 }

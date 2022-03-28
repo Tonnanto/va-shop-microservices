@@ -10,53 +10,40 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Orderr {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int orderId;
-	private int customerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int orderId;
+    private int customerId;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Set<OrderPosition> orderPositions;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<OrderPosition> orderPositions;
 
-	public Orderr() {
-		orderPositions = new HashSet<>();
-	}
+    public Orderr() {
+        orderPositions = new HashSet<>();
+    }
 
-	public int getCustomerId() {
-		return customerId;
-	}
+    public int getCustomerId() {
+        return customerId;
+    }
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
-	public int getOrderId() {
-		return orderId;
-	}
+    public int getOrderId() {
+        return orderId;
+    }
 
-	public Set<OrderPosition> getOrderPositions() {
-		return orderPositions;
-	}
+    public Set<OrderPosition> getOrderPositions() {
+        return orderPositions;
+    }
 
-	public void addOrderPosition(OrderPosition orderPosition) {
-		orderPositions.add(orderPosition);
-	}
+    public void addOrderPosition(OrderPosition orderPosition) {
+        orderPositions.add(orderPosition);
+    }
 
-	public int getNumberOfArticles() {
-		return orderPositions.size();
-	}
-
-//	public double getTotalPrice() {
-//		double totalPrice = 0.0;
-//
-//		Article article;
-//		for (OrderPosition orderPosition : orderPositions.values()) {
-//			article = orderPosition.getArticle();
-//
-//			totalPrice += orderPosition.getArticleQuantity() * article.getPrice();
-//		}
-//
-//		return totalPrice;
-//	}
+    public int getNumberOfArticles() {
+        return orderPositions.size();
+    }
 
 }

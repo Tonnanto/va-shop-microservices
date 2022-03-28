@@ -11,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ContextConfiguration(classes = { OrderTestConfiguration.class })
+@ContextConfiguration(classes = {OrderTestConfiguration.class})
 @ActiveProfiles("test")
 public class OrderSpringDataConnectorRequesterTest {
 

@@ -14,11 +14,11 @@ import java.util.Set;
 @Transactional
 public class OrderSpringDataConnectorRequester {
 
-    public OrderSpringDataConnectorRequester() {
-    }
-
     @Autowired
     private SessionFactory sessionFactory;
+
+    public OrderSpringDataConnectorRequester() {
+    }
 
     protected Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
@@ -44,7 +44,7 @@ public class OrderSpringDataConnectorRequester {
         NativeQuery<Orderr> query = getCurrentSession().createNativeQuery(queryString, Orderr.class);
         List<?> results = query.getResultList();
 
-        for (Object result: results) {
+        for (Object result : results) {
             if (result instanceof Orderr order) {
                 orders.add(order);
             }
@@ -61,7 +61,7 @@ public class OrderSpringDataConnectorRequester {
         NativeQuery<Orderr> query = getCurrentSession().createNativeQuery(queryString, Orderr.class);
         List<?> results = query.getResultList();
 
-        for (Object result: results) {
+        for (Object result : results) {
             if (result instanceof Orderr order) {
                 orders.add(order);
             }
@@ -78,7 +78,6 @@ public class OrderSpringDataConnectorRequester {
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // Operations for OrderrPosition
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 
 
 }

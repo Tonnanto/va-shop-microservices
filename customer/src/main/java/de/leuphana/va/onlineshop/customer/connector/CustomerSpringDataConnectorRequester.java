@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CustomerSpringDataConnectorRequester {
 
-    public CustomerSpringDataConnectorRequester() {
-    }
-
     @Autowired
     private SessionFactory sessionFactory;
+
+    public CustomerSpringDataConnectorRequester() {
+    }
 
     protected Session getCurrentSession() {
         return sessionFactory.getCurrentSession();

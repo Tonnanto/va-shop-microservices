@@ -12,7 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ContextConfiguration(classes = { CustomerTestConfiguration.class })
+@ContextConfiguration(classes = {CustomerTestConfiguration.class})
 @ActiveProfiles("test")
 public class CustomerSpringDataConnectorRequesterTest {
 

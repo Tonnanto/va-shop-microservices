@@ -5,5 +5,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ResponseBody
 public record OrderGetResponse(
-   Orderr order
-) {}
+        Orderr order
+) {
+}

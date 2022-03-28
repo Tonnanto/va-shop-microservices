@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class SupplierServiceImpl implements SupplierService {
 
+    private final ApiGatewayRestConnectorRequester apiGatewayRestConnectorRequester;
+
     public SupplierServiceImpl(ApiGatewayRestConnectorRequester apiGatewayRestConnectorRequester) {
         this.apiGatewayRestConnectorRequester = apiGatewayRestConnectorRequester;
     }
-
-    private final ApiGatewayRestConnectorRequester apiGatewayRestConnectorRequester;
 
     @Override
     public boolean insertArticle(Article article) {

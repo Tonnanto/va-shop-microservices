@@ -4,60 +4,64 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
 @JsonTypeInfo(
-		use = JsonTypeInfo.Id.NAME,
-		property = "articleType",
-		visible = true
+        use = JsonTypeInfo.Id.NAME,
+        property = "articleType",
+        visible = true
 )
 @JsonSubTypes({
-		@JsonSubTypes.Type(value = CD.class, name = "CD"),
-		@JsonSubTypes.Type(value = Book.class, name = "Book")
+        @JsonSubTypes.Type(value = CD.class, name = "CD"),
+        @JsonSubTypes.Type(value = Book.class, name = "Book")
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Article implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer articleId;
-	private String manufacturer;
-	private String name;
-	private float price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer articleId;
+    private String manufacturer;
+    private String name;
+    private float price;
 
-	public Article() {}
+    public Article() {
+    }
 
-	public Integer getArticleId() {
-		return articleId;
-	}
+    public Integer getArticleId() {
+        return articleId;
+    }
 
-	public String getManufacturer() {
-		return manufacturer;
-	}
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
+    }
 
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer = manufacturer;
-	}
+    public String getManufacturer() {
+        return manufacturer;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public float getPrice() {
-		return price;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setArticleId(Integer articleId) {
-		this.articleId = articleId;
-	}
+    public float getPrice() {
+        return price;
+    }
 
-	public void setPrice(float price) {
-		this.price = price;
-	}
+    public void setPrice(float price) {
+        this.price = price;
+    }
 }

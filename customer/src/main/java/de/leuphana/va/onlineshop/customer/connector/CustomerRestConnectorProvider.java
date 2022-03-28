@@ -26,12 +26,6 @@ public class CustomerRestConnectorProvider {
         return new CustomerReadResponse(customer);
     }
 
-//    @GetMapping(path = "/all")
-//    public AllArticlesGetResponse getAllArticles() {
-//        Set<Article> articles = articleService.getArticles();
-//        return new AllArticlesGetResponse(articles);
-//    }
-
     @PostMapping("create")
     public CustomerReadResponse createCustomer(@RequestBody CustomerCreateRequest createCustomerRequest) {
         Customer newCustomer = customerService.createCustomerWithCart(createCustomerRequest.name(), createCustomerRequest.address());

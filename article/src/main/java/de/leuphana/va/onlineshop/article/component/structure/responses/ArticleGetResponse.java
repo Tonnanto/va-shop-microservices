@@ -6,4 +6,5 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody
 public record ArticleGetResponse(
         Article article
-) {}
+) {
+}

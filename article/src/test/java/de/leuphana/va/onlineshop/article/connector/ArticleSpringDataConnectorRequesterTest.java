@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ContextConfiguration(classes = { ArticleTestConfiguration.class })
+@ContextConfiguration(classes = {ArticleTestConfiguration.class})
 @ActiveProfiles("test")
 public class ArticleSpringDataConnectorRequesterTest {
 
@@ -86,7 +86,7 @@ public class ArticleSpringDataConnectorRequesterTest {
     @Order(4)
     void areAllArticlesAvailable() {
         Set<Article> foundArticles = articleDataConnectorRequester.findAllArticles();
-        for (Article article: articleSet) {
+        for (Article article : articleSet) {
             Assertions.assertTrue(foundArticles.stream().anyMatch(article1 -> Objects.equals(article1.getArticleId(), article.getArticleId())));
         }
     }
@@ -94,7 +94,7 @@ public class ArticleSpringDataConnectorRequesterTest {
     @Test
     @Order(5)
     void canArticleBeFoundById() {
-        for (Article article: articleSet) {
+        for (Article article : articleSet) {
             Assertions.assertNotNull(articleDataConnectorRequester.findArticleById(article.getArticleId()));
         }
     }

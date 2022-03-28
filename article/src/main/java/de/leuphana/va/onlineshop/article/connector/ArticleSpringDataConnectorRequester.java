@@ -15,11 +15,11 @@ import java.util.Set;
 @Transactional
 public class ArticleSpringDataConnectorRequester {
 
-    public ArticleSpringDataConnectorRequester() {
-    }
-
     @Autowired
     private SessionFactory sessionFactory;
+
+    public ArticleSpringDataConnectorRequester() {
+    }
 
     protected Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
@@ -44,7 +44,7 @@ public class ArticleSpringDataConnectorRequester {
         NativeQuery<Article> query = getCurrentSession().createNativeQuery(queryString, Article.class);
         List<?> results = query.getResultList();
 
-        for (Object result: results) {
+        for (Object result : results) {
             if (result instanceof Article article) {
                 articles.add(article);
             }
@@ -88,7 +88,7 @@ public class ArticleSpringDataConnectorRequester {
         NativeQuery<Catalog> query = getCurrentSession().createNativeQuery(queryString, Catalog.class);
         List<?> results = query.getResultList();
 
-        for (Object result: results) {
+        for (Object result : results) {
             if (result instanceof Catalog catalog) {
                 catalogs.add(catalog);
             }
