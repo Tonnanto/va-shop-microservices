@@ -29,41 +29,74 @@ public class Catalog {
      * @return a demo Catalog to populate the database with.
      */
     static public Set<Article> getInitialArticles() {
-        Set<Article> articles = new HashSet<>();
-
-        Article article1 = new Article();
-        article1.setName("Toller Artikel");
-        article1.setPrice(420.69f);
 
         Book article2 = new Book();
-        article2.setName("Tolles Buch");
-        article2.setPrice(9.99f);
-        article2.setManufacturer("Springer Verlag");
-        article2.setAuthor("Anton Stamme");
-        article2.setBookCategory(BookCategory.CRIME);
+        article2.setName("Entwickeln von Web-Anwendungen");
+        article2.setPrice(23.0f);
+        article2.setBookCategory(BookCategory.POPULAR_SCIENCE);
 
-        CD article3 = new CD();
-        article3.setName("Tolle CD");
-        article3.setPrice(420.69f);
-        article3.setArtist("Ranji & Berg");
-        article3.setManufacturer("VooV");
+        Book article3 = new Book();
+        article3.setName("Java in a nutshell");
+        article3.setPrice(10.5f);
+        article3.setBookCategory(BookCategory.POPULAR_SCIENCE);
 
         Book article4 = new Book();
-        article4.setName("Entwickeln von Web-Anwendungen");
-        article4.setPrice(23.0f);
+        article4.setName("Servlets");
+        article4.setPrice(16.5f);
         article4.setBookCategory(BookCategory.POPULAR_SCIENCE);
 
+
         Book article5 = new Book();
-        article5.setName("Java in a nutshell");
-        article5.setPrice(10.5f);
-        article5.setBookCategory(BookCategory.POPULAR_SCIENCE);
+        article5.setName("Clean Code: A Handbook of Agile Software Craftsmanship");
+        article5.setAuthor("Robert C. \"Uncle Bob\" Martin");
+        article5.setPrice(41.59f);
+        article5.setBookCategory(BookCategory.SOFTWARE_TESTING);
 
         Book article6 = new Book();
-        article6.setName("Servlets");
-        article6.setPrice(16.5f);
-        article6.setBookCategory(BookCategory.POPULAR_SCIENCE);
+        article6.setName("The Pragmatic Programmer: From Journeyman to Master");
+        article6.setAuthor("Andrew Hunt, Dave Thomas");
+        article6.setPrice(145.78f);
+        article6.setBookCategory(BookCategory.COMPUTER_SCIENCE);
 
-        return new HashSet<>(Arrays.asList(article1, article2, article3, article4, article5, article6));
+        Book article7 = new Book();
+        article7.setName("Code Complete: A Practical Handbook of Software Construction");
+        article7.setAuthor("Steve McConnell");
+        article7.setPrice(32.49f);
+        article7.setBookCategory(BookCategory.NETWORK_AND_CLOUD);
+
+        Book article8 = new Book();
+        article8.setName("Design Patterns: Elements of Reusable Object-Oriented Software");
+        article8.setAuthor("Erich Gamma, Richard Helm, and Ralph Johnson");
+        article8.setPrice(39.99f);
+        article8.setBookCategory(BookCategory.COMPUTER_SCIENCE);
+
+        Book article9 = new Book();
+        article9.setName("Refactoring: Improving the Design of Existing Code");
+        article9.setAuthor("Martin Fowler");
+        article9.setPrice(19.99f);
+        article9.setBookCategory(BookCategory.NETWORK_AND_CLOUD);
+
+        Book article10 = new Book();
+        article10.setName("The Mythical Man-Month: Essays on Software Engineering");
+        article10.setAuthor("Frederick P. Brooks");
+        article10.setPrice(16.88f);
+        article10.setBookCategory(BookCategory.PROGRAMMING);
+
+        Book article11 = new Book();
+        article11.setName("Working Effectively with Legacy Code");
+        article11.setAuthor("Michael Feathers");
+        article11.setPrice(45.97f);
+        article11.setBookCategory(BookCategory.PROGRAMMING);
+
+
+
+        CD article12 = new CD();
+        article12.setName("Tolle CD");
+        article12.setPrice(420.69f);
+        article12.setArtist("Ranji & Berg");
+        article12.setManufacturer("VooV");
+
+        return new HashSet<>(Arrays.asList(article2, article3, article4, article5, article6, article7, article8, article9, article10, article11, article12));
     }
 
     public String getCatalogId() {

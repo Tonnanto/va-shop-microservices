@@ -151,7 +151,7 @@ public class CustomerServiceInvoker {
                 try {
                     Article article = shopRestConnector.getArticle(orderPos.getArticleId());
                     articles.add(article);
-                    options.add(String.format("%-30s %8.2f €      Amount: %s", article.getName(), article.getPrice(), orderPos.getArticleQuantity()));
+                    options.add(String.format("%-70s %8.2f €      Amount: %s", article.getName(), article.getPrice(), orderPos.getArticleQuantity()));
                     totalPrice[0] += article.getPrice() * orderPos.getArticleQuantity();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -162,7 +162,7 @@ public class CustomerServiceInvoker {
 
                 @Override
                 protected String getMessage() {
-                    return "Your Order (" + order.getOrderId() + "):\n" + articles.size() + " article" + ((articles.size() != 1) ? "s" : "") + "\n";
+                    return "Your Order (" + order.getOrderId() + "):\n" + articles.size() + " article" + ((articles.size() != 1) ? "s" : "") + String.format("\nTotal: %.2f €\n", totalPrice[0]);
                 }
 
                 @Override
@@ -206,7 +206,7 @@ public class CustomerServiceInvoker {
                 try {
                     Article article = shopRestConnector.getArticle(cartItem.getArticleId());
                     articles.add(article);
-                    options.add(String.format("%-30s %8.2f €      Amount: %s", article.getName(), article.getPrice(), cartItem.getQuantity()));
+                    options.add(String.format("%-70s %8.2f €      Amount: %s", article.getName(), article.getPrice(), cartItem.getQuantity()));
                     totalPrice[0] += article.getPrice() * cartItem.getQuantity();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -328,7 +328,7 @@ public class CustomerServiceInvoker {
 
             // Display all articles in catalog (Selectable)
             List<String> options = new ArrayList<>();
-            articles.forEach(article -> options.add(String.format("%-30s %.2f €", article.getName(), article.getPrice())));
+            articles.forEach(article -> options.add(String.format("%-70s %.2f €", article.getName(), article.getPrice())));
 
             SelectionView view = new SelectionView() {
 

@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="customer-service-invoker" />
         <module name="shop" />
-        <module name="supplier-service-invoker" />
         <module name="api-gateway" />
         <module name="article" />
         <module name="service-discovery" />
@@ -18,6 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="discovery-service" target="16" />
+      <module name="supplier-service-invoker" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
