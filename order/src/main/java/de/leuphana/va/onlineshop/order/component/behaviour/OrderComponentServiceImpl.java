@@ -4,7 +4,6 @@ import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 import de.leuphana.va.onlineshop.order.connector.OrderSpringDataConnectorRequester;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @Service

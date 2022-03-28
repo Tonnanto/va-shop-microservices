@@ -25,7 +25,7 @@ import java.util.Set;
 
 public class ShopRestConnectorRequester {
 
-    CloseableHttpClient httpclient;
+    final CloseableHttpClient httpclient;
 
     public ShopRestConnectorRequester() {
         this.httpclient = HttpClients.createDefault();

@@ -3,11 +3,11 @@ package de.leuphana.va.onlineshop.customer.connector;
 import de.leuphana.va.onlineshop.customer.component.behaviour.CustomerComponentService;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.component.structure.Customer;
-import de.leuphana.va.onlineshop.customer.connector.responses.*;
-import de.leuphana.va.onlineshop.customer.connector.requests.*;
+import de.leuphana.va.onlineshop.customer.connector.requests.AddRemoveArticleRequest;
+import de.leuphana.va.onlineshop.customer.connector.requests.CustomerCreateRequest;
+import de.leuphana.va.onlineshop.customer.connector.responses.CartGetResponse;
+import de.leuphana.va.onlineshop.customer.connector.responses.CustomerReadResponse;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Set;
 
 //@Slf4j
 @RestController

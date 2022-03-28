@@ -3,7 +3,6 @@ package de.leuphana.va.onlineshop.customer.connector;
 import de.leuphana.va.onlineshop.customer.component.structure.Cart;
 import de.leuphana.va.onlineshop.customer.component.structure.CartItem;
 import de.leuphana.va.onlineshop.customer.component.structure.Customer;
-import de.leuphana.va.onlineshop.customer.configuration.CustomerConfiguration;
 import de.leuphana.va.onlineshop.customer.configuration.CustomerTestConfiguration;
 import org.junit.jupiter.api.*;
 import org.springframework.context.ApplicationContext;

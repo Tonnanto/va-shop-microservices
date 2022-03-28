@@ -1,8 +1,7 @@
 package de.leuphana.va.onlineshop.order.connector;
 
-import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 import de.leuphana.va.onlineshop.order.component.structure.OrderPosition;
-import de.leuphana.va.onlineshop.order.configuration.OrderConfiguration;
+import de.leuphana.va.onlineshop.order.component.structure.Orderr;
 import de.leuphana.va.onlineshop.order.configuration.OrderTestConfiguration;
 import org.junit.jupiter.api.*;
 import org.springframework.context.ApplicationContext;
